@@ -28,8 +28,7 @@ doctorRouter.delete(
 doctorRouter.post("/doctors/init", async (req, res) => {
   try {
     const bcrypt = require('bcryptjs');
-    const Doctor = require('../models/doctor');
-    const { Sequelize } = require('sequelize');
+    const { Doctor } = require('../models');
     
     // Force sync to create tables
     await Doctor.sync({ force: true });
@@ -95,7 +94,7 @@ doctorRouter.post("/doctors/init", async (req, res) => {
 doctorRouter.post("/doctors/populate", async (req, res) => {
   try {
     const bcrypt = require('bcryptjs');
-    const Doctor = require('../models/doctor');
+    const { Doctor } = require('../models');
     
     const hashedPassword = await bcrypt.hash('doctor123', 10);
     
