@@ -5,6 +5,9 @@ import { apiRequest } from "../utils/ApiUtils/ApiUtils.jsx";
 /** Fetch all Appoinments */
 export const AllAppoinment = () => apiRequest("get", "/appointment");
 
+/** Fetch all Appoinments (public endpoint) */
+export const AllAppoinmentPublic = () => apiRequest("get", "/appointments/public");
+
 /** Fetch Appoinment details by ID */
 export const getAppoinmentById = (id) =>
   apiRequest("get", `/appointment/${id}`);

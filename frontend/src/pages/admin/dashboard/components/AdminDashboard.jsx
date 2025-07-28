@@ -3,17 +3,17 @@ import { MdFace } from "react-icons/md";
 import { FaUserDoctor } from "react-icons/fa6";
 import { FaBed } from "react-icons/fa";
 import useDayWiseData from "../../../../component/ChartData/components/DayWiseData";
-import { AllAppoinment } from "../../../../Api/AppointmentApi";
+import { AllAppoinmentPublic } from "../../../../Api/AppointmentApi";
 import useFetchData from "../../../../hooks/useFetchData";
 import { AllDoctorDataPublic } from "../../../../Api/DoctorApi";
-import { AllPatientData } from "../../../../Api/PatientApi";
+import { AllPatientDataPublic } from "../../../../Api/PatientApi";
 import { BarChart, PieChart } from "../../../../component/Chart";
 import StatsCard from "../../../../component/StatsCard/components/StatsCard";
 
 const AdminDashboard = () => {
-  const { data: Appointments, loading } = useFetchData(AllAppoinment);
+  const { data: Appointments, loading } = useFetchData(AllAppoinmentPublic);
   const { data: Doctors, docloading } = useFetchData(AllDoctorDataPublic);
-  const { data: Patients, Patientsloading } = useFetchData(AllPatientData);
+  const { data: Patients, Patientsloading } = useFetchData(AllPatientDataPublic);
   const backgroundColors = ["#6f42c1", "#ff5722", "#4caf50"]; // Different colors
 
   // ✅ Fetch day-wise appointment data

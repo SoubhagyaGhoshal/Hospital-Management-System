@@ -5,6 +5,9 @@ import { apiRequest } from "../utils/ApiUtils/ApiUtils.jsx";
 // Fetch all patients
 export const AllPatientData = () => apiRequest("get", `/patient`);
 
+// Fetch all patients (public endpoint)
+export const AllPatientDataPublic = () => apiRequest("get", `/patients/public`);
+
 // Fetch patient details by ID
 export const getPatientDataById = (id) => apiRequest("get", `/patient/${id}`);
 

@@ -5,6 +5,8 @@ const { authenticateToken } = require("../middleware/Auth");
 
 appointmentRouter.post("/appointment", appointmentController.postAppointment);
 appointmentRouter.get("/appointment", authenticateToken, appointmentController.getAllAppointment);
+// Public endpoint for getting all appointments (for admin dashboard)
+appointmentRouter.get("/appointments/public", appointmentController.getAllAppointment);
 appointmentRouter.get(
     "/appointment/:id",
     authenticateToken,
