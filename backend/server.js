@@ -111,6 +111,8 @@ const inMemoryDB = {
       birth: "1980-05-15T00:00:00.000Z",
       education: "MD, Neurology",
       doctorimg: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
+      username: "sarah.johnson",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -127,6 +129,8 @@ const inMemoryDB = {
       birth: "1975-08-22T00:00:00.000Z",
       education: "MD, Orthopedic Surgery",
       doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      username: "michael.chen",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -143,6 +147,8 @@ const inMemoryDB = {
       birth: "1982-12-10T00:00:00.000Z",
       education: "MD, Gynecology",
       doctorimg: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=150&h=150&fit=crop&crop=face",
+      username: "emily.rodriguez",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -159,6 +165,8 @@ const inMemoryDB = {
       birth: "1978-03-25T00:00:00.000Z",
       education: "MD, Microbiology",
       doctorimg: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
+      username: "david.thompson",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -175,6 +183,8 @@ const inMemoryDB = {
       birth: "1985-07-18T00:00:00.000Z",
       education: "MD, Neurology",
       doctorimg: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
+      username: "lisa.wang",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -191,6 +201,8 @@ const inMemoryDB = {
       birth: "1973-11-30T00:00:00.000Z",
       education: "MD, Orthopedic Surgery",
       doctorimg: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
+      username: "james.wilson",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -207,6 +219,8 @@ const inMemoryDB = {
       birth: "1981-04-12T00:00:00.000Z",
       education: "MD, Gynecology",
       doctorimg: "https://images.unsplash.com/photo-1551601651-bc60f254d532?w=150&h=150&fit=crop&crop=face",
+      username: "maria.garcia",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -223,6 +237,8 @@ const inMemoryDB = {
       birth: "1976-09-05T00:00:00.000Z",
       education: "MD, Cardiology",
       doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      username: "robert.brown",
+      password: "doctor123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     }
@@ -241,6 +257,8 @@ const inMemoryDB = {
       patientImg: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
       age: 34,
       maritalStatus: "Married",
+      username: "alice.brown",
+      password: "patient123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -257,6 +275,8 @@ const inMemoryDB = {
       patientImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
       age: 39,
       maritalStatus: "Single",
+      username: "bob.wilson",
+      password: "patient123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -273,6 +293,8 @@ const inMemoryDB = {
       patientImg: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
       age: 31,
       maritalStatus: "Married",
+      username: "carol.davis",
+      password: "patient123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -289,6 +311,8 @@ const inMemoryDB = {
       patientImg: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       age: 36,
       maritalStatus: "Divorced",
+      username: "david.miller",
+      password: "patient123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -305,6 +329,8 @@ const inMemoryDB = {
       patientImg: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
       age: 28,
       maritalStatus: "Single",
+      username: "emma.johnson",
+      password: "patient123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     },
@@ -321,6 +347,8 @@ const inMemoryDB = {
       patientImg: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
       age: 42,
       maritalStatus: "Married",
+      username: "michael.taylor",
+      password: "patient123",
       createdAt: "2025-01-01T00:00:00.000Z",
       updatedAt: "2025-01-01T00:00:00.000Z"
     }
@@ -504,40 +532,116 @@ const createProductionRoutes = () => {
   console.log('✅ Adding production routes');
   
   // Admin login with real authentication
-  app.post("/api/admin", async (req, res) => {
-    console.log('Admin login request received:', {
+  app.post("/api/admin", (req, res) => {
+    console.log("Admin login request received:", {
       method: req.method,
       body: req.body,
       headers: req.headers
     });
-    
+
     const { username, password } = req.body;
-    
-    // Check in-memory database
-    const user = inMemoryDB.users.find(u => u.username === username && u.password === password);
-    
-    if (user) {
-      const jwt = require('jsonwebtoken');
+
+    if (username === "admin" && password === "admin123") {
       const token = jwt.sign(
-        { username: user.username, id: user.id },
-        process.env.SECRET_KEY || 'hospital_management_secret_key_2024_secure_and_unique',
-        { expiresIn: '24h' }
+        { username: "admin", id: 1 },
+        SECRET_KEY,
+        { expiresIn: "24h" }
       );
-      
-      console.log('Admin login successful for user:', username);
+
+      console.log("Admin login successful for user:", username);
+
       res.json({
         success: true,
         message: "Login successful",
         token: token,
-        user: {
-          username: user.username,
-          role: user.role
+        user: { username: "admin", role: "admin" }
+      });
+    } else {
+      res.status(401).json({
+        success: false,
+        message: "Invalid credentials"
+      });
+    }
+  });
+
+  // Add doctor login endpoint
+  app.post("/api/doctor/login", (req, res) => {
+    const { username, password } = req.body;
+    
+    const doctor = inMemoryDB.doctors.find(d => 
+      d.username === username && d.password === password
+    );
+
+    if (doctor) {
+      const token = jwt.sign(
+        { 
+          username: doctor.username, 
+          id: doctor.id,
+          role: "doctor",
+          firstName: doctor.firstName,
+          lastName: doctor.lastName,
+          department: doctor.department
+        },
+        SECRET_KEY,
+        { expiresIn: "24h" }
+      );
+
+      res.json({
+        success: true,
+        message: "Doctor login successful",
+        token: token,
+        user: { 
+          username: doctor.username, 
+          role: "doctor",
+          firstName: doctor.firstName,
+          lastName: doctor.lastName,
+          department: doctor.department
         }
       });
     } else {
       res.status(401).json({
-        error: "Invalid credentials",
-        message: "Please use admin/admin123 to login"
+        success: false,
+        message: "Invalid doctor credentials"
+      });
+    }
+  });
+
+  // Add patient login endpoint
+  app.post("/api/patient/login", (req, res) => {
+    const { username, password } = req.body;
+    
+    const patient = inMemoryDB.patients.find(p => 
+      p.username === username && p.password === password
+    );
+
+    if (patient) {
+      const token = jwt.sign(
+        { 
+          username: patient.username, 
+          id: patient.id,
+          role: "patient",
+          firstName: patient.firstName,
+          lastName: patient.lastName
+        },
+        SECRET_KEY,
+        { expiresIn: "24h" }
+      );
+
+      res.json({
+        success: true,
+        message: "Patient login successful",
+        token: token,
+        user: { 
+          username: patient.username, 
+          role: "patient",
+          firstName: patient.firstName,
+          lastName: patient.lastName
+        }
+      });
+    } else {
+      res.status(401).json({
+        success: false,
+        message: "Invalid patient credentials"
       });
     }
   });
@@ -929,6 +1033,69 @@ const createDemoRoutes = () => {
       res.status(401).json({
         error: "Invalid credentials",
         message: "Please use admin/admin123 for demo mode",
+        demo: true
+      });
+    }
+  });
+
+  // Doctor login demo
+  app.post("/api/doctor/login", (req, res) => {
+    const { username, password } = req.body;
+    
+    const doctor = inMemoryDB.doctors.find(d => 
+      d.username === username && d.password === password
+    );
+
+    if (doctor) {
+      const token = "demo-doctor-token-" + Date.now();
+      res.json({
+        success: true,
+        message: "Doctor login successful (Demo Mode)",
+        token: token,
+        user: { 
+          username: doctor.username, 
+          role: "doctor",
+          firstName: doctor.firstName,
+          lastName: doctor.lastName,
+          department: doctor.department
+        },
+        demo: true
+      });
+    } else {
+      res.status(401).json({
+        success: false,
+        message: "Invalid doctor credentials",
+        demo: true
+      });
+    }
+  });
+
+  // Patient login demo
+  app.post("/api/patient/login", (req, res) => {
+    const { username, password } = req.body;
+    
+    const patient = inMemoryDB.patients.find(p => 
+      p.username === username && p.password === password
+    );
+
+    if (patient) {
+      const token = "demo-patient-token-" + Date.now();
+      res.json({
+        success: true,
+        message: "Patient login successful (Demo Mode)",
+        token: token,
+        user: { 
+          username: patient.username, 
+          role: "patient",
+          firstName: patient.firstName,
+          lastName: patient.lastName
+        },
+        demo: true
+      });
+    } else {
+      res.status(401).json({
+        success: false,
+        message: "Invalid patient credentials",
         demo: true
       });
     }
