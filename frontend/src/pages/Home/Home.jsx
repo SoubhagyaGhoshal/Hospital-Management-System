@@ -117,15 +117,6 @@ function Home() {
             Welcome to Cliniva
           </h1>
           
-          {/* Backend Status Message */}
-          {window.location.hostname === 'cliniva.netlify.app' && (
-            <div className="mt-2 mb-4">
-              <span className="text-blue-400 text-sm bg-blue-900/20 px-3 py-1 rounded-full">
-                🔧 Production Backend: If login fails, ensure local backend is running on localhost:4000
-              </span>
-            </div>
-          )}
-          
           {/* Connection Test */}
           {/* <ConnectionTest /> */}
 
