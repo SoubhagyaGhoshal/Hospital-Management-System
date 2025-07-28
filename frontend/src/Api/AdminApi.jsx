@@ -1,4 +1,4 @@
-import { apiRequest } from "../utils/ApiUtils/ApiUtils";
+import { apiRequest } from "../utils/ApiUtils/apiUtils";
 
 // ✅ Department APIs
 
