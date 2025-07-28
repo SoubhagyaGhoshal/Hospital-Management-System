@@ -1,4 +1,3 @@
-const { deleteShift } = require("../controllers/shiftControllers");
 const db = require("../models/index");
 const { updateDepartmentService } = require("./departmentServices");
 const Doctor = db.Doctor;

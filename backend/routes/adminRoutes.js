@@ -1,12 +1,44 @@
 const express = require("express");
 const adminRouter = express();
 const adminController = require("../controllers/adminController");
-const { authenticateToken } = require("../middleware/Auth");
+const { authenticateToken, generateToken } = require("../middleware/Auth");
 const db = require("../models/index");
 const User = db.User;
 
 adminRouter.post("/admin", adminController.findAdmin);
 adminRouter.get("/admin", authenticateToken, adminController.getAdmin);
+
+// Token refresh endpoint
+adminRouter.post("/admin/refresh", async (req, res) => {
+  try {
+    const { username } = req.body;
+    
+    if (!username) {
+      return res.status(400).json({ error: "Username is required!" });
+    }
+    
+    const user = await User.findOne({ where: { username } });
+    
+    if (!user) {
+      return res.status(401).json({ error: "User not found!" });
+    }
+    
+    const payload = {
+      username: user.username,
+      id: user.id,
+    };
+    
+    const token = await generateToken(payload);
+    
+    res.json({ 
+      user: { username: user.username, id: user.id },
+      token: token 
+    });
+  } catch (error) {
+    console.error('Token refresh error:', error);
+    res.status(500).json({ error: "Failed to refresh token" });
+  }
+});
 
 // Temporary endpoint to create admin user (remove after use)
 adminRouter.get("/admin/create", async (req, res) => {

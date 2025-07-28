@@ -33,9 +33,13 @@ const appointmentServices = {
   },
 
   getAllAppointmentService: async () => {
-    const response = await Appointment.findAll();
-
-    return response;
+    try {
+      const response = await Appointment.findAll();
+      return response;
+    } catch (error) {
+      console.error('Error fetching appointments:', error);
+      throw new Error(`Failed to fetch appointments: ${error.message}`);
+    }
   },
 
   updateAppointmentService: async (id, appointmentData) => {

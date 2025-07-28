@@ -41,7 +41,7 @@ const appointmentController = {
 
       res.status(201).json(response);
     } catch (error) {
-      console.log(error);
+      console.error('Appointment creation error:', error);
       return res.status(400).json({ error: error.message });
     }
   },
@@ -50,9 +50,9 @@ const appointmentController = {
     try {
       const response = await appointmentServices.getAllAppointmentService();
 
-      res.status(201).json(response);
+      res.status(200).json(response);
     } catch (error) {
-      console.log(error);
+      console.error('Get all appointments error:', error);
       return res.status(400).json({ error: error.message });
     }
   },
@@ -92,9 +92,9 @@ const appointmentController = {
         appointmentData
       );
 
-      res.status(201).json(response);
+      res.status(200).json(response);
     } catch (error) {
-      console.log(error);
+      console.error('Update appointment error:', error);
       return res.status(400).json({ error: error.message });
     }
   },
@@ -104,9 +104,9 @@ const appointmentController = {
     try {
       const response = await appointmentServices.deleteAppointmentService(id);
 
-      res.status(201).json(response);
+      res.status(200).json(response);
     } catch (error) {
-      console.log(error);
+      console.error('Delete appointment error:', error);
       return res.status(400).json({ error: error.message });
     }
   },
@@ -116,9 +116,9 @@ const appointmentController = {
     try {
       const response = await appointmentServices.getAppointmentByIdService(id);
 
-      res.status(201).json(response);
+      res.status(200).json(response);
     } catch (error) {
-      console.log(error);
+      console.error('Get appointment by ID error:', error);
       return res.status(400).json({ error: error.message });
     }
   },

@@ -18,18 +18,19 @@ const authenticateToken = async (req, res, next) => {
 
   try {
     const decoded = await jwt.verify(token, SECRET_KEY);
+    
+    // Check if token is expired (only if exp field exists)
+    const currentTime = Math.floor(Date.now() / 1000);
+    if (decoded.exp && decoded.exp < currentTime) {
+      return res.status(401).json({ error: "Token has expired!" });
+    }
 
     req.user = decoded;
-
     next();
-  } catch (err) {
-    console.error(err);
-    res.status(401).json({ error: "invalid Error." });
+  } catch (error) {
+    console.error("Token verification error:", error.message);
+    return res.status(401).json({ error: "Invalid token!" });
   }
 };
 
-const generateToken = (payload) => {
-  return jwt.sign(payload, SECRET_KEY);
-};
-
-module.exports = { authenticateToken, generateToken };
+module.exports = { authenticateToken };

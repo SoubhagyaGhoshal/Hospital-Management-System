@@ -1,5 +1,14 @@
 const adminService = require("../services/adminServices");
 const db = require("../models/index");
+const jwt = require("jsonwebtoken");
+
+const SECRET_KEY = process.env.SECRET_KEY || "hospital_management_secret_key_2024";
+
+const generateToken = (payload) => {
+  // Add expiration time (24 hours)
+  const expiresIn = '24h';
+  return jwt.sign(payload, SECRET_KEY, { expiresIn });
+};
 
 const adminController = {
   findAdmin: async (req, res) => {
@@ -33,12 +42,11 @@ const adminController = {
         
         // Simple fallback authentication
         if (username === 'admin' && password === 'admin123') {
-          const { generateToken } = require("../middleware/Auth");
           const payload = {
             username: 'admin',
             id: 1,
           };
-          const token = await generateToken(payload);
+          const token = generateToken(payload);
           
           return res.status(201).json({
             user: { username: 'admin', id: 1 },

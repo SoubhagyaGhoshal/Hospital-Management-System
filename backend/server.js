@@ -23,8 +23,8 @@ const initializeDatabase = async () => {
     await db.sequelize.authenticate();
     console.log('Database connection has been established successfully.');
     
-    // Sync database (create tables if they don't exist)
-    await db.sequelize.sync({ force: false, alter: true });
+    // Sync database (create tables if they don't exist) - use force: false to avoid data loss
+    await db.sequelize.sync({ force: false, alter: false });
     console.log('Database synchronized successfully.');
     
     // Check if admin user exists, if not create one
@@ -105,7 +105,23 @@ app.use(
   pharmacyRouter
 );
 
+// Global error handler
+app.use((err, req, res, next) => {
+  console.error('Global error handler:', err);
+  res.status(500).json({ 
+    error: 'Internal server error',
+    message: err.message 
+  });
+});
 
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ 
+    error: 'Route not found',
+    path: req.path,
+    method: req.method
+  });
+});
 
 const PORT = process.env.PORT || 4000;
 
