@@ -40,12 +40,16 @@ const initializeDatabase = async () => {
     } else {
       console.log('Admin user already exists');
     }
+    
+    // Set global flag to indicate database is available
+    global.dbConnected = true;
   } catch (error) {
     console.error('Unable to connect to the database:', error);
     console.error('Database error details:', error.message);
     console.error('Database config:', db.sequelize.config);
     
-    // Don't exit the process, just log the error
+    // Set global flag to indicate database is not available
+    global.dbConnected = false;
     console.log('Continuing without database connection...');
   }
 };
