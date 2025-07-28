@@ -23,6 +23,7 @@
     "start": "node server.js",
     "quick-start": "node start.js",
     "test-deployment": "node test-deployment.js",
+    "add-sample-data": "node add-sample-data.js",
     "dev": "nodemon server.js"
   },
   "author": "Dharmik Odedara",
