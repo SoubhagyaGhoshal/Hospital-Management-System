@@ -15,7 +15,7 @@ import {
   FaBriefcase,
 } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
-import { apiRequest } from "../../../utils/ApiUtils/ApiUtils";
+import { apiRequest } from "../../../utils/ApiUtils/ApiUtils.jsx";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {

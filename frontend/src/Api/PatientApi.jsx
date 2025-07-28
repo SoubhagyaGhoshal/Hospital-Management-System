@@ -1,4 +1,4 @@
-import { apiRequest } from "../utils/ApiUtils/ApiUtils";
+import { apiRequest } from "../utils/ApiUtils/ApiUtils.jsx";
 
 // ✅ Patients APIs
 
