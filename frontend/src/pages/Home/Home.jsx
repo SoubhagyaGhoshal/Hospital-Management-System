@@ -13,7 +13,7 @@ import { loginAdmin } from "../../Api/AdminApi";
 import { loginPatient } from "../../Api/PatientApi";
 import { doctorLogin } from "../../Api/DoctorApi";
 import { useNavigate } from "react-router-dom";
-import ConnectionTest from "../../components/ConnectionTest";
+// import ConnectionTest from "../../components/ConnectionTest";
 
 function Home() {
   const [showPassword, setShowPassword] = useState(false);
@@ -101,7 +101,7 @@ function Home() {
           </h1>
 
           {/* Connection Test */}
-          <ConnectionTest />
+          {/* <ConnectionTest /> */}
 
           <div>
             <span className="text-red-500">{error}</span>
