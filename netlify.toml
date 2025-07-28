@@ -1,15 +1,13 @@
 [build]
-  base = "backend"
-  command = "npm install"
+  base = "frontend"
+  command = "npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_ENV = "production"
+  NODE_VERSION = "20"
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/api/:splat"
-  status = 200
-
-[functions]
-  directory = "functions" 
+  from = "/*"
+  to = "/index.html"
+  status = 200 
