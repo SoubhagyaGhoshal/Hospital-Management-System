@@ -10,17 +10,9 @@ services:
         value: production
       - key: PORT
         value: 4000
-      - key: DB_HOST
-        sync: false
-      - key: DB_PORT
-        value: 3306
-      - key: DB_USER
-        sync: false
-      - key: DB_PASSWORD
-        sync: false
-      - key: DB_NAME
-        value: hospital
+      - key: SECRET_KEY
+        value: hospital_management_secret_key_2024_secure_and_unique
       - key: DATABASE_URL
-        sync: false
+        value: postgresql://postgres:password@localhost:5432/hospital
     healthCheckPath: /
     autoDeploy: true 
