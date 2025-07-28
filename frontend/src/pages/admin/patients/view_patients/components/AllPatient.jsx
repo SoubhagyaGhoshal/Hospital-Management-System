@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
   deletePatientData,
-  AllPatientData,
+  AllPatientDataPublic,
 } from "../../../../../Api/PatientApi";
 import {
   BreadcrumbNavbar,
@@ -21,7 +21,7 @@ function AllPatients() {
 
   const fetchPatients = async () => {
     try {
-      const response = await AllPatientData();
+      const response = await AllPatientDataPublic();
       console.log(response);
       setPatients(response);
       setFilteredPatients(response);

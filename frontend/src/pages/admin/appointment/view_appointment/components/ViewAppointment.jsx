@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useFetchData from "../../../../../hooks/useFetchData";
 import useDeleteItem from "../../../../../hooks/useDeleteItem";
 import {
-  AllAppoinment,
+  AllAppoinmentPublic,
   deleteAppoinment,
 } from "../../../../../Api/AppointmentApi";
 import AppointmentTable from "./AppointmentTable";
@@ -12,7 +12,7 @@ import {
 } from "../../../../../component/DoctorNavbar";
 
 function ViewAppointment() {
-  const { data: Appointments, loading, error } = useFetchData(AllAppoinment);
+  const { data: Appointments, loading, error } = useFetchData(AllAppoinmentPublic);
   const [search, setSearch] = useState("");
   const [filteredAppointments, setFilteredAppointments] = useState([]);
 
