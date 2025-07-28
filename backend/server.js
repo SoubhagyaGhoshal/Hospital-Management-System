@@ -1,5 +1,9 @@
 const express = require("express");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+
+// Secret key for JWT tokens
+const SECRET_KEY = process.env.SECRET_KEY || "hospital_management_secret_key_2024_secure_and_unique";
 
 // Try to load database, but don't fail if it's not available
 let db;
