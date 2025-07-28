@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 const testConnection = async () => {
   const isProduction = process.env.NODE_ENV === 'production';
   const baseURL = isProduction 
-    ? import.meta.env.VITE_API_URL || "https://hospital-backend.onrender.com/api"
+    ? import.meta.env.VITE_API_URL || "https://hospital-backend-eme3.onrender.com/api"
     : "http://localhost:4000/api";
   try {
     const response = await fetch(baseURL + '/');
@@ -29,7 +29,7 @@ function ConnectionTest() {
     // Get the current backend URL
     const isProduction = process.env.NODE_ENV === 'production';
     const url = isProduction 
-      ? import.meta.env.VITE_API_URL || "https://hospital-backend.onrender.com/api"
+      ? import.meta.env.VITE_API_URL || "https://hospital-backend-eme3.onrender.com/api"
       : "http://localhost:4000/api";
     setBackendUrl(url);
 
