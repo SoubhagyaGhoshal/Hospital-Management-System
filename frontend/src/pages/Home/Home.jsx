@@ -106,7 +106,11 @@ function Home() {
           setError("Server error. Please try again or ensure the local backend is running on port 4000.");
         }
       } else if (error.message.includes("timeout")) {
-        setError("Request timed out. Please try again.");
+        if (window.location.hostname === 'cliniva.netlify.app') {
+          setError("Demo server is experiencing timeout issues. Please try again or use the demo login (admin/admin123).");
+        } else {
+          setError("Request timed out. Please try again.");
+        }
       } else if (error.message.includes("Internal server error")) {
         if (window.location.hostname === 'cliniva.netlify.app') {
           setError("Demo server is experiencing issues. Please try again or use the demo login (admin/admin123).");
