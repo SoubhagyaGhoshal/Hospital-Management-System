@@ -13,6 +13,7 @@ import { loginAdmin } from "../../Api/AdminApi";
 import { loginPatient } from "../../Api/PatientApi";
 import { doctorLogin } from "../../Api/DoctorApi";
 import { useNavigate } from "react-router-dom";
+import ConnectionTest from "../../components/ConnectionTest";
 
 function Home() {
   const [showPassword, setShowPassword] = useState(false);
@@ -98,6 +99,9 @@ function Home() {
           <h1 className="text-[#96a2b4] text-lg font-sans">
             Welcome to Cliniva
           </h1>
+
+          {/* Connection Test */}
+          <ConnectionTest />
 
           <div>
             <span className="text-red-500">{error}</span>
