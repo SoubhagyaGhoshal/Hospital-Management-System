@@ -129,101 +129,111 @@ async function addSampleData() {
     }
     console.log('✅ Added 4 new patients');
 
-    // Add pharmacy medicines
+    // Add pharmacy medicines with correct model structure
     console.log('💊 Adding pharmacy medicines...');
     const medicines = [
       {
-        medicineName: 'Paracetamol',
-        medicineType: 'Tablet',
-        medicinePrice: 5.99,
-        medicineQuantity: 500,
-        medicineDescription: 'Pain reliever and fever reducer',
-        medicineImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=150&h=150&fit=crop'
+        medicine_id: 'MED002',
+        name: 'Ibuprofen',
+        category: 'Capsule',
+        companyname: 'Pain Relief Pharma',
+        purchasedate: '2024-08-01',
+        price: 8.50,
+        expiredate: '2026-08-01',
+        stock: 300
       },
       {
-        medicineName: 'Ibuprofen',
-        medicineType: 'Capsule',
-        medicinePrice: 8.50,
-        medicineQuantity: 300,
-        medicineDescription: 'Anti-inflammatory pain medication',
-        medicineImage: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=150&h=150&fit=crop'
+        medicine_id: 'MED003',
+        name: 'Amoxicillin',
+        category: 'Capsule',
+        companyname: 'Antibiotic Corp',
+        purchasedate: '2024-08-15',
+        price: 15.75,
+        expiredate: '2026-08-15',
+        stock: 200
       },
       {
-        medicineName: 'Amoxicillin',
-        medicineType: 'Capsule',
-        medicinePrice: 15.75,
-        medicineQuantity: 200,
-        medicineDescription: 'Antibiotic for bacterial infections',
-        medicineImage: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop'
+        medicine_id: 'MED004',
+        name: 'Omeprazole',
+        category: 'Tablet',
+        companyname: 'Digestive Health Inc',
+        purchasedate: '2024-09-01',
+        price: 12.99,
+        expiredate: '2026-09-01',
+        stock: 250
       },
       {
-        medicineName: 'Omeprazole',
-        medicineType: 'Tablet',
-        medicinePrice: 12.99,
-        medicineQuantity: 250,
-        medicineDescription: 'Proton pump inhibitor for acid reflux',
-        medicineImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=150&h=150&fit=crop'
+        medicine_id: 'MED005',
+        name: 'Cetirizine',
+        category: 'Tablet',
+        companyname: 'Allergy Relief Ltd',
+        purchasedate: '2024-09-15',
+        price: 7.25,
+        expiredate: '2026-09-15',
+        stock: 400
       },
       {
-        medicineName: 'Cetirizine',
-        medicineType: 'Tablet',
-        medicinePrice: 7.25,
-        medicineQuantity: 400,
-        medicineDescription: 'Antihistamine for allergies',
-        medicineImage: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=150&h=150&fit=crop'
+        medicine_id: 'MED006',
+        name: 'Metformin',
+        category: 'Tablet',
+        companyname: 'Diabetes Care Pharma',
+        purchasedate: '2024-10-01',
+        price: 9.99,
+        expiredate: '2026-10-01',
+        stock: 350
       },
       {
-        medicineName: 'Metformin',
-        medicineType: 'Tablet',
-        medicinePrice: 9.99,
-        medicineQuantity: 350,
-        medicineDescription: 'Oral diabetes medication',
-        medicineImage: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop'
+        medicine_id: 'MED007',
+        name: 'Lisinopril',
+        category: 'Tablet',
+        companyname: 'Cardiovascular Health',
+        purchasedate: '2024-10-15',
+        price: 11.50,
+        expiredate: '2026-10-15',
+        stock: 300
       },
       {
-        medicineName: 'Lisinopril',
-        medicineType: 'Tablet',
-        medicinePrice: 11.50,
-        medicineQuantity: 300,
-        medicineDescription: 'ACE inhibitor for high blood pressure',
-        medicineImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=150&h=150&fit=crop'
+        medicine_id: 'MED008',
+        name: 'Atorvastatin',
+        category: 'Tablet',
+        companyname: 'Cholesterol Management',
+        purchasedate: '2024-11-01',
+        price: 14.75,
+        expiredate: '2026-11-01',
+        stock: 275
       },
       {
-        medicineName: 'Atorvastatin',
-        medicineType: 'Tablet',
-        medicinePrice: 14.75,
-        medicineQuantity: 275,
-        medicineDescription: 'Statin for cholesterol management',
-        medicineImage: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=150&h=150&fit=crop'
+        medicine_id: 'MED009',
+        name: 'Albuterol',
+        category: 'Inhaler',
+        companyname: 'Respiratory Care Inc',
+        purchasedate: '2024-11-15',
+        price: 22.99,
+        expiredate: '2026-11-15',
+        stock: 150
       },
       {
-        medicineName: 'Albuterol',
-        medicineType: 'Inhaler',
-        medicinePrice: 22.99,
-        medicineQuantity: 150,
-        medicineDescription: 'Bronchodilator for asthma',
-        medicineImage: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop'
-      },
-      {
-        medicineName: 'Warfarin',
-        medicineType: 'Tablet',
-        medicinePrice: 18.50,
-        medicineQuantity: 200,
-        medicineDescription: 'Blood thinner for clot prevention',
-        medicineImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=150&h=150&fit=crop'
+        medicine_id: 'MED010',
+        name: 'Warfarin',
+        category: 'Tablet',
+        companyname: 'Blood Thinner Pharma',
+        purchasedate: '2024-12-01',
+        price: 18.50,
+        expiredate: '2026-12-01',
+        stock: 200
       }
     ];
 
     for (const medicine of medicines) {
       await db.Pharmacy.create(medicine);
     }
-    console.log('✅ Added 10 pharmacy medicines');
+    console.log('✅ Added 9 pharmacy medicines');
 
     console.log('🎉 Sample data added successfully!');
     console.log('\n📊 Summary:');
     console.log('- 4 new doctors added');
     console.log('- 4 new patients added');
-    console.log('- 10 pharmacy medicines added');
+    console.log('- 9 pharmacy medicines added');
 
   } catch (error) {
     console.error('❌ Error adding sample data:', error);

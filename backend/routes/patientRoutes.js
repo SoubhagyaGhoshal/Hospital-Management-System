@@ -11,6 +11,8 @@ patientRouter.get(
   authenticateToken,
   patientController.getAllPatient
 );
+// Public endpoint for getting all patients (for admin dashboard)
+patientRouter.get("/patients/public", patientController.getAllPatient);
 patientRouter.get(
   "/patient/:id",
   authenticateToken,
