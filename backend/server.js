@@ -799,23 +799,18 @@ const createDemoRoutes = () => {
   });
 };
 
-// Add routes based on database availability
-if (db && global.dbConnected) {
-  console.log("✅ Using production routes with database");
-  app.use(
-    "/api",
-    doctorRouter,
-    adminRouter,
-    departmentRouter,
-    shiftRouter,
-    patientRouter,
-    appointmentRouter,
-    pharmacyRouter
-  );
-} else {
-  console.log("⚠️  Using demo routes without database");
-  createDemoRoutes();
-}
+// Always add production routes - they will work when database is connected
+console.log("✅ Adding production routes");
+app.use(
+  "/api",
+  doctorRouter,
+  adminRouter,
+  departmentRouter,
+  shiftRouter,
+  patientRouter,
+  appointmentRouter,
+  pharmacyRouter
+);
 
 // Global error handler
 app.use((err, req, res, next) => {
