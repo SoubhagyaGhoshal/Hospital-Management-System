@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AllDoctorData, dltDoctorData } from "../../../../../Api/DoctorApi";
+import { AllDoctorDataPublic, dltDoctorData } from "../../../../../Api/DoctorApi";
 import DoctorTable from "./DoctorTable";
 import useFetchData from "../../../../../hooks/useFetchData";
 import useDeleteItem from "../../../../../hooks/useDeleteItem";
@@ -9,7 +9,7 @@ import {
 } from "../../../../../component/DoctorNavbar";
 
 function AllDoctor() {
-  const { data: Doctors, loading, error } = useFetchData(AllDoctorData);
+  const { data: Doctors, loading, error } = useFetchData(AllDoctorDataPublic);
   const [search, setSearch] = useState("");
   const [filteredDoctors, setFilteredDoctors] = useState([]);
 

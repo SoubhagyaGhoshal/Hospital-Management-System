@@ -4,7 +4,7 @@ import { FloatingInput } from "../../../../../utils/Form/FormUtils.jsx";
 import FloatingSelect from "../../../../../utils/Form/FloatingSelect.jsx";
 import useFloatingLabel from "../../add_doctor/components/FloatingLabel.jsx";
 import useFetchData from "../../../../../hooks/useFetchData.jsx";
-import { AllDoctorData } from "../../../../../Api/DoctorApi.jsx";
+import { AllDoctorDataPublic } from "../../../../../Api/DoctorApi.jsx";
 import useFormSubmit from "../../../../../hooks/useFormSubmit.jsx";
 
 function AddShiftModal({ onClose, reload }) {
@@ -24,7 +24,7 @@ function AddShiftModal({ onClose, reload }) {
     loading: DocotrLoading,
     error,
     refetch, // ✅ Use refetch to update data after changes
-  } = useFetchData(AllDoctorData);
+  } = useFetchData(AllDoctorDataPublic);
 
   const { handleSubmit } = useFormSubmit(
     AddShiftData,

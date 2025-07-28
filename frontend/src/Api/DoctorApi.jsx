@@ -8,6 +8,9 @@ export const addDoctorData = (data) => apiRequest("post", "/doctor", data);
 /** Fetch all doctors */
 export const AllDoctorData = () => apiRequest("get", "/doctor");
 
+/** Fetch all doctors (public endpoint) */
+export const AllDoctorDataPublic = () => apiRequest("get", "/doctors/public");
+
 /** Delete a doctor by ID */
 export const dltDoctorData = (id) => apiRequest("delete", `/doctor/${id}`);
 

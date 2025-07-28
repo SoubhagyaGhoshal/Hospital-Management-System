@@ -6,6 +6,8 @@ const { authenticateToken } = require("../middleware/Auth");
 doctorRouter.post("/doctor", authenticateToken, doctorController.addDoctor);
 doctorRouter.post("/doctor/register", doctorController.addDoctor);
 doctorRouter.get("/doctor", authenticateToken, doctorController.getAllDoctor);
+// Public endpoint for getting all doctors (for admin dashboard)
+doctorRouter.get("/doctors/public", doctorController.getAllDoctor);
 doctorRouter.put(
   "/doctor/:id",
   authenticateToken,

@@ -5,14 +5,14 @@ import { FaBed } from "react-icons/fa";
 import useDayWiseData from "../../../../component/ChartData/components/DayWiseData";
 import { AllAppoinment } from "../../../../Api/AppointmentApi";
 import useFetchData from "../../../../hooks/useFetchData";
-import { AllDoctorData } from "../../../../Api/DoctorApi";
+import { AllDoctorDataPublic } from "../../../../Api/DoctorApi";
 import { AllPatientData } from "../../../../Api/PatientApi";
 import { BarChart, PieChart } from "../../../../component/Chart";
 import StatsCard from "../../../../component/StatsCard/components/StatsCard";
 
 const AdminDashboard = () => {
   const { data: Appointments, loading } = useFetchData(AllAppoinment);
-  const { data: Doctors, docloading } = useFetchData(AllDoctorData);
+  const { data: Doctors, docloading } = useFetchData(AllDoctorDataPublic);
   const { data: Patients, Patientsloading } = useFetchData(AllPatientData);
   const backgroundColors = ["#6f42c1", "#ff5722", "#4caf50"]; // Different colors
 

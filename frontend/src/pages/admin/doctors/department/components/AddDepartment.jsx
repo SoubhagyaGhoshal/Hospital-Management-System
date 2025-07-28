@@ -1,6 +1,6 @@
 import React from "react";
 import useFetchData from "../../../../../hooks/useFetchData.jsx";
-import { AllDoctorData } from "../../../../../Api/DoctorApi.jsx";
+import { AllDoctorDataPublic } from "../../../../../Api/DoctorApi.jsx";
 import useDepartmentFormState from "../../../../../hooks/formhooks/FormFields/Department/useDepartmentFormState.jsx";
 import useDepartmentFormFields from "../../../../../hooks/formhooks/InputFields/useDeprartmentFormFields.jsx";
 import useDepartmentFormSubmit from "../../../../../hooks/formhooks/FormFields/Department/useDepartmentSubmitForm.jsx";
@@ -27,7 +27,7 @@ function AddDepartmentModal({ onClose, reload }) {
     data: Doctor,
     loading: doctorLoading,
     error,
-  } = useFetchData(AllDoctorData);
+  } = useFetchData(AllDoctorDataPublic);
 
   const submitForm = async (e) => {
     e.preventDefault();

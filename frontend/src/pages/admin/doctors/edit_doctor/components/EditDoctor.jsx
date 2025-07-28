@@ -7,7 +7,7 @@ import {
 import {
   getDoctorDataById,
   updateDoctorData,
-  AllDoctorData,
+  AllDoctorDataPublic,
 } from "../../../../../Api/DoctorApi";
 import { FiUpload } from "react-icons/fi";
 import { BreadcrumbNavbar } from "../../../../../component/DoctorNavbar";
@@ -35,7 +35,7 @@ function EditDoctor() {
     loading: doctorLoading,
     error,
     refetch, // ✅ Use refetch to update data after changes
-  } = useFetchData(AllDoctorData);
+  } = useFetchData(AllDoctorDataPublic);
 
   useEffect(() => {
     fetchDoctorById();

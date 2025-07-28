@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { BreadcrumbNavbar } from "../../../../../component/DoctorNavbar";
+import React, { useState } from "react";
 import { AddAppoinment } from "../../../../../Api/AppointmentApi";
-import { AllDoctorData } from "../../../../../Api/DoctorApi";
-import { validateFields } from "../../../../../utils/Form/formValidation";
-import useFetchData from "../../../../../hooks/useFetchData";
-import useFormSubmit from "../../../../../hooks/useFormSubmit";
-import useAppointmentBookingFormFields from "../../../../../hooks/formhooks/InputFields/useAppointmentBookingFormFields";
-import useAppointmenttFormState from "../../../../../hooks/formhooks/FormFields/Appointment/useAppointmentFormState";
-import AppointmentForm from "./AppointmentForm";
-import { handleSubmission } from "../../../../../utils/Form/handleAppointmentSubmission";
+import { AllDoctorDataPublic } from "../../../../../Api/DoctorApi";
+import useAppointmentBookingFormFields from "../../../../../hooks/formhooks/InputFields/useAppointmentBookingFormFields.jsx";
+import useAppointmenttFormState from "../../../../../hooks/formhooks/FormFields/Appointment/useAppointmentFormState.jsx";
+import useFormSubmit from "../../../../../hooks/useFormSubmit.jsx";
+import useFetchData from "../../../../../hooks/useFetchData.jsx";
+import AppointmentForm from "./AppointmentForm.jsx";
+import { BreadcrumbNavbar } from "../../../../../component/DoctorNavbar";
+import { handleSubmission } from "../../../../../utils/Form/handleAppointmentSubmission.js";
+import { validateFields } from "../../../../../utils/Form/formValidation.js";
 
 function BookAppointment() {
   const [error, setError] = useState("");
@@ -39,7 +39,7 @@ function BookAppointment() {
     setLoading,
   } = useAppointmenttFormState();
 
-  const { data: Doctors } = useFetchData(AllDoctorData);
+  const { data: Doctors } = useFetchData(AllDoctorDataPublic);
 
   const { handleSubmit } = useFormSubmit(
     AddAppoinment,
