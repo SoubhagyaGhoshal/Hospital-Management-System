@@ -44,8 +44,12 @@ function Home() {
 
         if (response) {
           setSuccess(`Login successful as ${selectedRole}`);
-          localStorage.setItem("token", response.token);
+          localStorage.setItem("token", response.token || "demo-token");
           localStorage.setItem("userRole", "admin");
+          // Handle demo mode
+          if (response.demo) {
+            localStorage.setItem("demoMode", "true");
+          }
           navigate("/dashbord");
         } else {
           setError("Login failed.");
@@ -77,7 +81,12 @@ function Home() {
         }
     } catch (error) {
       console.error("Error logging in:", error.message);
-      setError(error.message || "Login failed.");
+      // Handle demo mode errors
+      if (error.message.includes('Demo mode') || error.message.includes('Route not found')) {
+        setError("Demo mode: Please use admin/admin123 to login.");
+      } else {
+        setError(error.message || "Login failed.");
+      }
     }
   };
 
