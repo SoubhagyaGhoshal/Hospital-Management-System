@@ -3,7 +3,7 @@ import axios from "axios";
 // Create Axios instance
 const api = axios.create({
   baseURL: process.env.NODE_ENV === 'production' 
-    ? "https://your-backend-url.vercel.app/api"  // Replace with your actual deployed backend URL
+    ? "https://hospital-backend.onrender.com/api"  // Render backend URL
     : "http://localhost:4000/api",
 });
 

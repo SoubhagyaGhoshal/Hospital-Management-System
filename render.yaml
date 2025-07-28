@@ -1,0 +1,47 @@
+services:
+  # Backend API
+  - type: web
+    name: hospital-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: hospital-db
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: hospital-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: hospital-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: hospital-db
+          property: name
+
+  # Frontend
+  - type: web
+    name: hospital-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://hospital-backend.onrender.com/api
+
+databases:
+  - name: hospital-db
+    databaseName: hospital
+    user: hospital_user 
