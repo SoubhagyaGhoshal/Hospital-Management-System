@@ -44,6 +44,9 @@ const initializeDatabase = async () => {
     console.error('Unable to connect to the database:', error);
     console.error('Database error details:', error.message);
     console.error('Database config:', db.sequelize.config);
+    
+    // Don't exit the process, just log the error
+    console.log('Continuing without database connection...');
   }
 };
 

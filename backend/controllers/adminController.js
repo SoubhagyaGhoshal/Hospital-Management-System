@@ -15,6 +15,11 @@ const adminController = {
     }
 
     try {
+      // Check if database is connected
+      if (!db.sequelize.authenticate) {
+        return res.status(503).json({ error: "Database connection not available" });
+      }
+
       const response = await adminService.findAdminService(username, password);
       console.log('Admin login successful for user:', username);
       res.status(201).json(response);
@@ -31,6 +36,11 @@ const adminController = {
 
       if (error.message === "password is does not match!") {
         return res.status(402).json({ error: error.message });
+      }
+      
+      // Check if it's a database connection error
+      if (error.message.includes('Connection terminated') || error.message.includes('ECONNREFUSED')) {
+        return res.status(503).json({ error: "Database connection error", details: error.message });
       }
       
       // Generic error response
