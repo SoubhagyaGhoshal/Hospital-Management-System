@@ -568,7 +568,46 @@ const createDemoRoutes = () => {
     });
   });
 
-  app.get("/api/patients", (req, res) => {
+  app.get("/api/appointments/public", (req, res) => {
+    res.json({
+      appointments: [
+        {
+          id: 1,
+          patientName: "Alice Brown",
+          doctorName: "Dr. Sarah Johnson",
+          date_of_appointment: "2025-01-15T10:00:00.000Z",
+          time: "10:00 AM",
+          status: "Scheduled",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        },
+        {
+          id: 2,
+          patientName: "Bob Wilson",
+          doctorName: "Dr. Michael Chen",
+          date_of_appointment: "2025-01-16T14:00:00.000Z",
+          time: "2:00 PM",
+          status: "Completed",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        },
+        {
+          id: 3,
+          patientName: "Carol Davis",
+          doctorName: "Dr. Emily Rodriguez",
+          date_of_appointment: "2025-01-17T09:00:00.000Z",
+          time: "9:00 AM",
+          status: "Scheduled",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        }
+      ],
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/patients/public", (req, res) => {
     res.json({
       patients: [
         {

@@ -11,31 +11,45 @@ import { BarChart, PieChart } from "../../../../component/Chart";
 import StatsCard from "../../../../component/StatsCard/components/StatsCard";
 
 const AdminDashboard = () => {
-  const { data: Appointments, loading } = useFetchData(AllAppoinmentPublic);
-  const { data: Doctors, docloading } = useFetchData(AllDoctorDataPublic);
-  const { data: Patients, Patientsloading } = useFetchData(AllPatientDataPublic);
+  const { data: Appointments, loading, error: appointmentError } = useFetchData(AllAppoinmentPublic);
+  const { data: Doctors, docloading, error: doctorError } = useFetchData(AllDoctorDataPublic);
+  const { data: Patients, Patientsloading, error: patientError } = useFetchData(AllPatientDataPublic);
   const backgroundColors = ["#6f42c1", "#ff5722", "#4caf50"]; // Different colors
+
+  // Handle errors gracefully
+  if (appointmentError || doctorError || patientError) {
+    console.error("Dashboard errors:", { appointmentError, doctorError, patientError });
+  }
 
   // ✅ Fetch day-wise appointment data
   const { labels: appointmentLabels, values: appointmentValues } =
     useDayWiseData({
-      Appointments,
+      Appointments: Appointments || [],
       loading,
       itemDate: "date_of_appointment",
     });
 
   // ✅ Fetch day-wise doctor data
   const { labels: doctorLabels, values: doctorValues } = useDayWiseData({
-    Appointments: Doctors, // Use correct key
+    Appointments: Doctors || [], // Use correct key
     loading: docloading,
     itemDate: "createdAt",
   });
 
   const { labels: patientLabels, values: patientValues } = useDayWiseData({
-    Appointments: Patients, // Use correct key
+    Appointments: Patients || [], // Use correct key
     loading: Patientsloading,
     itemDate: "createdAt",
   });
+
+  // Show loading state if any data is still loading
+  if (loading || docloading || Patientsloading) {
+    return (
+      <div className="md:h-[100vh] bg-[#232B3E] flex items-center justify-center">
+        <div className="text-white text-xl">Loading dashboard...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="md:h-[100vh] bg-[#232B3E] overflow-hidden">
