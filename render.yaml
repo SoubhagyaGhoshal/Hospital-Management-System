@@ -34,14 +34,7 @@ services:
           name: hospital-db
           property: port
 
-  # Frontend
-  - type: static
-    name: hospital-frontend
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://hospital-backend.onrender.com/api
+
 
 databases:
   - name: hospital-db
