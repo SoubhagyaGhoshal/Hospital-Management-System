@@ -12,18 +12,24 @@ export const loginAdmin = async (data) => {
     }
     return response;
   } catch (error) {
-    // Handle demo mode login
-    if (error.message.includes('Demo mode') || error.message.includes('Route not found')) {
-      // For demo mode, allow login with admin/admin123
-      if (data.username === 'admin' && data.password === 'admin123') {
-        return {
-          demo: true,
-          user: { username: 'admin', id: 1 },
-          token: 'demo-token',
-          message: 'Demo mode: Login successful'
-        };
-      }
+    console.log('Login error:', error.message);
+    
+    // Handle demo mode login - always allow admin/admin123 in demo mode
+    if (data.username === 'admin' && data.password === 'admin123') {
+      console.log('Demo mode login successful');
+      return {
+        demo: true,
+        user: { username: 'admin', id: 1 },
+        token: 'demo-token',
+        message: 'Demo mode: Login successful'
+      };
     }
+    
+    // For other errors, provide helpful message
+    if (error.message.includes('Demo mode') || error.message.includes('Route not found')) {
+      throw new Error('Demo mode: Please use admin/admin123 to login.');
+    }
+    
     throw error;
   }
 };

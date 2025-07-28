@@ -111,6 +111,13 @@ function Home() {
           <h1 className="text-[#96a2b4] text-lg font-sans">
             Welcome to Cliniva
           </h1>
+          
+          {/* Demo Mode Indicator */}
+          <div className="mt-2 mb-4">
+            <span className="text-yellow-400 text-sm bg-yellow-900/20 px-3 py-1 rounded-full">
+              Demo Mode - Use admin/admin123 to login
+            </span>
+          </div>
 
           {/* Connection Test */}
           {/* <ConnectionTest /> */}
