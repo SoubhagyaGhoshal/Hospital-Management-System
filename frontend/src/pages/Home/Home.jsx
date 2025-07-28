@@ -145,15 +145,6 @@ function Home() {
             Welcome to Cliniva
           </h1>
           
-          {/* Demo Notice */}
-          {window.location.hostname === 'cliniva.netlify.app' && (
-            <div className="mt-2 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
-              <p className="text-blue-300 text-sm">
-                <strong>Demo Mode:</strong> This is a demonstration version. Use <strong>admin/admin123</strong> to login and explore the system.
-              </p>
-            </div>
-          )}
-          
           {/* Connection Test */}
           {/* <ConnectionTest /> */}
 
