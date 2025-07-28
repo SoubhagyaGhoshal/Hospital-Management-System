@@ -6,7 +6,10 @@ import { apiRequest } from "../utils/ApiUtils/ApiUtils.jsx";
 export const AllPatientData = () => apiRequest("get", `/patient`);
 
 // Fetch all patients (public endpoint)
-export const AllPatientDataPublic = () => apiRequest("get", `/patients/public`);
+export const AllPatientDataPublic = async () => {
+  const response = await apiRequest("get", `/patients/public`);
+  return response.patients || response;
+};
 
 // Fetch patient details by ID
 export const getPatientDataById = (id) => apiRequest("get", `/patient/${id}`);

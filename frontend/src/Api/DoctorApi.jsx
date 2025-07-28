@@ -9,7 +9,10 @@ export const addDoctorData = (data) => apiRequest("post", "/doctor", data);
 export const AllDoctorData = () => apiRequest("get", "/doctor");
 
 /** Fetch all doctors (public endpoint) */
-export const AllDoctorDataPublic = () => apiRequest("get", "/doctors/public");
+export const AllDoctorDataPublic = async () => {
+  const response = await apiRequest("get", "/doctors/public");
+  return response.doctors || response;
+};
 
 /** Delete a doctor by ID */
 export const dltDoctorData = (id) => apiRequest("delete", `/doctor/${id}`);

@@ -6,7 +6,10 @@ import { apiRequest } from "../utils/ApiUtils/ApiUtils.jsx";
 export const AllAppoinment = () => apiRequest("get", "/appointment");
 
 /** Fetch all Appoinments (public endpoint) */
-export const AllAppoinmentPublic = () => apiRequest("get", "/appointments/public");
+export const AllAppoinmentPublic = async () => {
+  const response = await apiRequest("get", "/appointments/public");
+  return response.appointments || response;
+};
 
 /** Fetch Appoinment details by ID */
 export const getAppoinmentById = (id) =>
