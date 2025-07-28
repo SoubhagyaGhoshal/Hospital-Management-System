@@ -21,7 +21,7 @@ doctorRouter.get(
 doctorRouter.delete(
   "/doctor/:id",
   authenticateToken,
-  doctorController.deleteDoctor
+  doctorController.dltDoctorById
 );
 
 // Temporary endpoint to populate database with sample doctors (for production)
