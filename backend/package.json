@@ -21,14 +21,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'No build step required'",
     "quick-start": "node start.js",
     "test-deployment": "node test-deployment.js",
-    "add-sample-data": "node add-sample-data.js",
-    "dev": "nodemon server.js"
+    "add-sample-data": "node add-sample-data.js"
   },
   "author": "Dharmik Odedara",
   "license": "ISC",
-  "description": "",
+  "description": "Hospital Management System Backend",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "devDependencies": {
     "sequelize-cli": "^6.6.2"
   }

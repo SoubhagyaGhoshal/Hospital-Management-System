@@ -18,22 +18,41 @@ try {
       console.log(`⚠️  ${config.use_env_variable} environment variable not set`);
       console.log("📝 Using fallback configuration for deployment");
       
-      // Create a fallback configuration for deployment
-      sequelize = new Sequelize({
-        dialect: 'sqlite',
-        storage: ':memory:',
-        logging: false
-      });
+      // Use environment variables for database configuration
+      const dbConfig = {
+        dialect: 'mysql',
+        host: process.env.DB_HOST || config.host || 'localhost',
+        port: process.env.DB_PORT || config.port || 3306,
+        username: process.env.DB_USER || config.username || 'root',
+        password: process.env.DB_PASSWORD || config.password || '',
+        database: process.env.DB_NAME || config.database || 'hospital',
+        logging: false,
+        dialectOptions: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false
+          }
+        }
+      };
+      
+      sequelize = new Sequelize(dbConfig);
     } else {
       sequelize = new Sequelize(databaseUrl, config);
     }
   } else {
-    sequelize = new Sequelize(
-      config.database,
-      config.username,
-      config.password,
-      config
-    );
+    // Use direct configuration
+    const dbConfig = {
+      dialect: config.dialect || 'mysql',
+      host: process.env.DB_HOST || config.host || 'localhost',
+      port: process.env.DB_PORT || config.port || 3306,
+      username: process.env.DB_USER || config.username || 'root',
+      password: process.env.DB_PASSWORD || config.password || '',
+      database: process.env.DB_NAME || config.database || 'hospital',
+      logging: config.logging !== undefined ? config.logging : false,
+      dialectOptions: config.dialectOptions || {}
+    };
+    
+    sequelize = new Sequelize(dbConfig);
   }
 } catch (error) {
   console.error("❌ Database configuration error:", error.message);
