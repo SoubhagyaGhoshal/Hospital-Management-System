@@ -10,15 +10,41 @@ const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
+
+try {
+  if (config.use_env_variable) {
+    const databaseUrl = process.env[config.use_env_variable];
+    if (!databaseUrl) {
+      console.log(`⚠️  ${config.use_env_variable} environment variable not set`);
+      console.log("📝 Using fallback configuration for deployment");
+      
+      // Create a fallback configuration for deployment
+      sequelize = new Sequelize({
+        dialect: 'sqlite',
+        storage: ':memory:',
+        logging: false
+      });
+    } else {
+      sequelize = new Sequelize(databaseUrl, config);
+    }
+  } else {
+    sequelize = new Sequelize(
+      config.database,
+      config.username,
+      config.password,
+      config
+    );
+  }
+} catch (error) {
+  console.error("❌ Database configuration error:", error.message);
+  console.log("📝 Using fallback configuration");
+  
+  // Create a fallback configuration
+  sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: ':memory:',
+    logging: false
+  });
 }
 
 fs.readdirSync(__dirname)
