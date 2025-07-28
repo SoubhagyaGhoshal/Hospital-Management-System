@@ -5,14 +5,14 @@ import {
 } from "../../../../../component/DoctorNavbar";
 import useFetchData from "../../../../../hooks/useFetchData";
 import useDeleteItem from "../../../../../hooks/useDeleteItem";
-import { AllPharmacy, deletePharmacy } from "../../../../../Api/PharmacyApi";
+import { AllPharmacyPublic, deletePharmacy } from "../../../../../Api/PharmacyApi";
 import MedicineTable from "./MedicineTable"; // ✅ Fixed typo
 import UpdateMedicineModal from "./UpdateMedicineModel";
 import { useDispatch } from "react-redux";
 import { setUpdateId } from "../../../../../Redux/slices/SidebarSlice";
 
 function MedicineList() {
-  const { data: Pharmacy, loading, error, refetch } = useFetchData(AllPharmacy);
+  const { data: Pharmacy, loading, error, refetch } = useFetchData(AllPharmacyPublic);
   const [search, setSearch] = useState("");
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [filteredPharmacy, setFilteredPharmacy] = useState([]);

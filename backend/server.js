@@ -679,6 +679,70 @@ const createDemoRoutes = () => {
     });
   });
 
+  app.get("/api/pharmacy/public", (req, res) => {
+    res.json({
+      pharmacy: [
+        {
+          id: 1,
+          name: "Paracetamol",
+          companyname: "ABC Pharmaceuticals",
+          category: "Pain Relief",
+          price: 5.99,
+          stock: 150,
+          description: "Effective pain reliever and fever reducer",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        },
+        {
+          id: 2,
+          name: "Amoxicillin",
+          companyname: "XYZ Medical",
+          category: "Antibiotic",
+          price: 12.50,
+          stock: 75,
+          description: "Broad-spectrum antibiotic for bacterial infections",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        },
+        {
+          id: 3,
+          name: "Ibuprofen",
+          companyname: "HealthCare Inc",
+          category: "Anti-inflammatory",
+          price: 8.25,
+          stock: 200,
+          description: "Non-steroidal anti-inflammatory drug",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        },
+        {
+          id: 4,
+          name: "Omeprazole",
+          companyname: "MediCorp",
+          category: "Gastric",
+          price: 15.75,
+          stock: 60,
+          description: "Proton pump inhibitor for acid reflux",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        },
+        {
+          id: 5,
+          name: "Cetirizine",
+          companyname: "AllergyCare",
+          category: "Antihistamine",
+          price: 6.50,
+          stock: 120,
+          description: "Relieves allergy symptoms and hay fever",
+          createdAt: "2025-01-01T00:00:00.000Z",
+          updatedAt: "2025-01-01T00:00:00.000Z"
+        }
+      ],
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
   // Generic demo response for other endpoints
   app.use("/api", (req, res) => {
     res.status(503).json({ 

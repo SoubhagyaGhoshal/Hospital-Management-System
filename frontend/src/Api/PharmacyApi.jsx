@@ -1,9 +1,15 @@
 import { apiRequest } from "../utils/ApiUtils/ApiUtils.jsx";
 
-// ✅ Appoinment APIs
+// ✅ Pharmacy APIs
 
 /** Fetch all Pharmacy */
 export const AllPharmacy = () => apiRequest("get", "/pharmacy");
+
+/** Fetch all Pharmacy (public endpoint) */
+export const AllPharmacyPublic = async () => {
+  const response = await apiRequest("get", "/pharmacy/public");
+  return response.pharmacy || response;
+};
 
 // Add a new Pharmacy
 export const addPharmacy = (data) => apiRequest("post", `/pharmacy`, data);
