@@ -81,7 +81,17 @@ function Home() {
         }
     } catch (error) {
       console.error("Error logging in:", error.message);
-      setError(error.message || "Login failed.");
+      
+      // Provide helpful error messages based on the error
+      if (error.message.includes("Unable to connect to server")) {
+        setError("Backend server is not available. Please ensure the backend is running locally on port 4000.");
+      } else if (error.message.includes("Network error")) {
+        setError("Network connection failed. Please check your internet connection.");
+      } else if (error.message.includes("timeout")) {
+        setError("Request timed out. Please try again.");
+      } else {
+        setError(error.message || "Login failed. Please try again.");
+      }
     }
   };
 
@@ -106,6 +116,15 @@ function Home() {
           <h1 className="text-[#96a2b4] text-lg font-sans">
             Welcome to Cliniva
           </h1>
+          
+          {/* Backend Status Message */}
+          {window.location.hostname === 'cliniva.netlify.app' && (
+            <div className="mt-2 mb-4">
+              <span className="text-blue-400 text-sm bg-blue-900/20 px-3 py-1 rounded-full">
+                🔧 Development Mode: Please ensure backend is running on localhost:4000
+              </span>
+            </div>
+          )}
           
           {/* Connection Test */}
           {/* <ConnectionTest /> */}
