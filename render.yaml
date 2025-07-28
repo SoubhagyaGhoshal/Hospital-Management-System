@@ -28,7 +28,11 @@ services:
       - key: DB_NAME
         fromDatabase:
           name: hospital-db
-          property: name
+          property: database
+      - key: DB_PORT
+        fromDatabase:
+          name: hospital-db
+          property: port
 
   # Frontend
   - type: web
@@ -44,4 +48,5 @@ services:
 databases:
   - name: hospital-db
     databaseName: hospital
-    user: hospital_user 
+    user: hospital_user
+    plan: free 
