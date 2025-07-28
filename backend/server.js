@@ -26,13 +26,14 @@ const pharmacyRouter = require("./routes/pharmacyRoutes");
 const initializeDatabase = async () => {
   if (!db) {
     console.log("📝 No database available, running in demo mode");
+    global.dbConnected = false;
     return;
   }
 
   const timeout = setTimeout(() => {
     console.log('⏰ Database connection timed out, continuing in demo mode...');
     global.dbConnected = false;
-  }, 10000); // 10 second timeout
+  }, 15000); // 15 second timeout for production
 
   try {
     console.log('🔗 Attempting to connect to database...');
@@ -69,6 +70,7 @@ const initializeDatabase = async () => {
     // Set global flag to indicate database is available
     global.dbConnected = true;
     clearTimeout(timeout);
+    console.log('🔄 Switching to production routes...');
   } catch (error) {
     console.error('❌ Unable to connect to the database:', error);
     console.error('🔍 Database error details:', error.message);
@@ -133,10 +135,17 @@ app.get("/test", (req, res) => {
 const createDemoRoutes = () => {
   // Admin login demo
   app.post("/api/admin", (req, res) => {
+    console.log('Admin login request received:', {
+      method: req.method,
+      body: req.body,
+      headers: req.headers
+    });
+    
     const { username, password } = req.body;
     
     if (username === "admin" && password === "admin123") {
       const token = "demo-token-" + Date.now();
+      console.log('Admin login successful for user:', username);
       res.json({
         success: true,
         message: "Login successful (Demo Mode)",
