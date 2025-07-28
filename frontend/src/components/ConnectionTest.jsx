@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { testConnection } from '../utils/ApiUtils/ApiUtils';
+import { testConnection } from '../utils/ApiUtils/ApiUtils.jsx';
 
 function ConnectionTest() {
   const [connectionStatus, setConnectionStatus] = useState('Testing...');
