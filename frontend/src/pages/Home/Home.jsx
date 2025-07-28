@@ -81,12 +81,7 @@ function Home() {
         }
     } catch (error) {
       console.error("Error logging in:", error.message);
-      // Handle demo mode errors
-      if (error.message.includes('Demo mode') || error.message.includes('Route not found')) {
-        setError("Demo mode: Please use admin/admin123 to login.");
-      } else {
-        setError(error.message || "Login failed.");
-      }
+      setError(error.message || "Login failed.");
     }
   };
 
@@ -112,13 +107,6 @@ function Home() {
             Welcome to Cliniva
           </h1>
           
-          {/* Demo Mode Indicator */}
-          <div className="mt-2 mb-4">
-            <span className="text-yellow-400 text-sm bg-yellow-900/20 px-3 py-1 rounded-full">
-              Demo Mode - Use admin/admin123 to login
-            </span>
-          </div>
-
           {/* Connection Test */}
           {/* <ConnectionTest /> */}
 
