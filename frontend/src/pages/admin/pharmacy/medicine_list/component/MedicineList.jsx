@@ -9,7 +9,7 @@ import { AllPharmacy, deletePharmacy } from "../../../../../Api/PharmacyApi";
 import MedicineTable from "./MedicineTable"; // ✅ Fixed typo
 import UpdateMedicineModal from "./UpdateMedicineModel";
 import { useDispatch } from "react-redux";
-import { setUpdateId } from "../../../../../Redux/slices/sidebarSlice";
+import { setUpdateId } from "../../../../../Redux/slices/SidebarSlice";
 
 function MedicineList() {
   const { data: Pharmacy, loading, error, refetch } = useFetchData(AllPharmacy);

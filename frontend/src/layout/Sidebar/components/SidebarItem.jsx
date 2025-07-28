@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import { IoIosArrowForward } from "react-icons/io"; // Assuming this is the left arrow icon
-import { setPage } from "../../../Redux/slices/sidebarSlice";
+import { setPage } from "../../../Redux/slices/SidebarSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const SidebarItem = ({ item, index, openCategories, toggleCategory }) => {

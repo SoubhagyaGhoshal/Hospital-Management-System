@@ -7,7 +7,7 @@ import { AllShiftData, deleteShiftData } from "../../../../../Api/ShiftApi";
 import ShiftTable from "./ShiftTable";
 import AddShiftModal from "./AddShift";
 import { useDispatch } from "react-redux";
-import { setUpdateId } from "../../../../../Redux/slices/sidebarSlice";
+import { setUpdateId } from "../../../../../Redux/slices/SidebarSlice";
 import UpdateShiftModal from "./UpdateShift";
 import useFetchData from "../../../../../hooks/useFetchData";
 import useDeleteItem from "../../../../../hooks/useDeleteItem";

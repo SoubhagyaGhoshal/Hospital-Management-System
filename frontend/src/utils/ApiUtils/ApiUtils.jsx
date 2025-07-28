@@ -3,7 +3,7 @@ import axios from "axios";
 // Create Axios instance
 const api = axios.create({
   baseURL: process.env.NODE_ENV === 'production' 
-    ? "https://hospital-backend.onrender.com/api"  // Render backend URL
+    ? "https://your-netlify-app.netlify.app/api"  // Netlify backend URL
     : "http://localhost:4000/api",
 });
 

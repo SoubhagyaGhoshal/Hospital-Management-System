@@ -7,7 +7,7 @@ import { getAdmin } from "../../../Api/AdminApi";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { IoMdMenu } from "react-icons/io";
-import { setMenu } from "../../../Redux/slices/sidebarSlice";
+import { setMenu } from "../../../Redux/slices/SidebarSlice";
 
 const Sidebar = () => {
   const [openCategories, setOpenCategories] = useState({ 0: true });

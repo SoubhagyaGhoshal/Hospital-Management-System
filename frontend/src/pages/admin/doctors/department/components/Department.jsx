@@ -4,7 +4,7 @@ import {
   dltDepartment,
 } from "../../../../../Api/DepartmentApi";
 import { useDispatch } from "react-redux";
-import { setUpdateId } from "../../../../../Redux/slices/sidebarSlice";
+import { setUpdateId } from "../../../../../Redux/slices/SidebarSlice";
 import AddDepartmentModal from "./AddDepartment";
 import UpdateDepartmentModal from "./UpadateDepartment";
 import DepartmentTable from "./DepartmentTable";
