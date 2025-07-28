@@ -24,6 +24,10 @@ function Home() {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
+  // Debug logging to check hostname
+  console.log('🌐 Current hostname:', window.location.hostname);
+  console.log('🔗 Current URL:', window.location.href);
+
   const handleRoleSelection = (role) => {
     setSelectedRole(role);
   };
@@ -90,32 +94,37 @@ function Home() {
     } catch (error) {
       console.error("❌ Error logging in:", error.message);
       
+      // Check if we're in development (localhost)
+      const isDevelopment = window.location.hostname === 'localhost' || 
+                           window.location.hostname === '127.0.0.1' ||
+                           window.location.hostname.includes('localhost');
+      
       // Provide helpful error messages based on the error
       if (error.message.includes("Server temporarily unavailable")) {
         setError("Server is temporarily unavailable. Please try again in a few moments or use admin/admin123 to login.");
       } else if (error.message.includes("Network error")) {
-        if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Server is experiencing connectivity issues. Please try again or use admin/admin123 to login.");
+        if (isDevelopment) {
+          setError("Network connection failed. Please check your internet connection and ensure the backend is running on localhost:4000.");
         } else {
-          setError("Network connection failed. Please check your internet connection.");
+          setError("Server is experiencing connectivity issues. Please try again or use admin/admin123 to login.");
         }
       } else if (error.message.includes("Server error")) {
-        if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Server is experiencing database connection issues. Please try again or use admin/admin123 to login.");
-        } else {
+        if (isDevelopment) {
           setError("Server error. Please try again or ensure the local backend is running on port 4000.");
+        } else {
+          setError("Server is experiencing database connection issues. Please try again or use admin/admin123 to login.");
         }
       } else if (error.message.includes("timeout")) {
-        if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Server is experiencing timeout issues. Please try again or use admin/admin123 to login.");
-        } else {
+        if (isDevelopment) {
           setError("Request timed out. Please try again.");
+        } else {
+          setError("Server is experiencing timeout issues. Please try again or use admin/admin123 to login.");
         }
       } else if (error.message.includes("Internal server error")) {
-        if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Server is experiencing database connection issues. Please try again or use admin/admin123 to login.");
-        } else {
+        if (isDevelopment) {
           setError("Server error. Please try again or ensure the local backend is running on port 4000.");
+        } else {
+          setError("Server is experiencing database connection issues. Please try again or use admin/admin123 to login.");
         }
       } else {
         setError(error.message || "Login failed. Please try again.");
