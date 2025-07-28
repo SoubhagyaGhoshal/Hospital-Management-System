@@ -865,6 +865,103 @@ const createProductionRoutes = () => {
     }
   });
 
+  // Add signup endpoints for demo mode
+  app.post("/api/doctor/register", (req, res) => {
+    const {
+      firstName,
+      lastName,
+      gender,
+      mobile,
+      password,
+      designation,
+      department,
+      address,
+      email,
+      birth,
+      education,
+      doctorimg
+    } = req.body;
+
+    // Check if email already exists
+    const existingDoctor = inMemoryDB.doctors.find(d => d.email === email);
+    if (existingDoctor) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Email Already Exit!" 
+      });
+    }
+
+    const newDoctor = {
+      id: inMemoryDB.doctors.length + 1,
+      firstName,
+      lastName,
+      gender,
+      mobile,
+      password, // In demo mode, store password as-is for simplicity
+      designation,
+      department,
+      address,
+      email,
+      birth,
+      education,
+      doctorimg: doctorimg || "https://via.placeholder.com/150",
+      username: email, // Use email as username
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    inMemoryDB.doctors.push(newDoctor);
+    res.status(201).json(newDoctor);
+  });
+
+  app.post("/api/patient/register", (req, res) => {
+    const {
+      firstName,
+      lastName,
+      gender,
+      mobile,
+      password,
+      birth,
+      email,
+      maritalStatus,
+      address,
+      bloodGroup,
+      injury,
+      patientImg
+    } = req.body;
+
+    // Check if email already exists
+    const existingPatient = inMemoryDB.patients.find(p => p.email === email);
+    if (existingPatient) {
+      return res.status(400).json({ 
+        success: false, 
+        message: "Email Already Exit!" 
+      });
+    }
+
+    const newPatient = {
+      id: inMemoryDB.patients.length + 1,
+      firstName,
+      lastName,
+      gender,
+      mobile,
+      password, // In demo mode, store password as-is for simplicity
+      birth,
+      email,
+      maritalStatus,
+      address,
+      bloodGroup,
+      injury: injury || "None",
+      patientImg: patientImg || "https://via.placeholder.com/150",
+      username: email, // Use email as username
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    inMemoryDB.patients.push(newPatient);
+    res.status(201).json(newPatient);
+  });
+
   // Add CRUD endpoints for appointments
   app.post("/api/appointment", (req, res) => {
     const newAppointment = {
