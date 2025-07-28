@@ -1,4 +1,4 @@
-import { apiRequest } from "../utils/ApiUtils/apiUtils";
+import { apiRequest } from "../utils/ApiUtils/ApiUtils";
 
 // ✅ Shift APIs
 
