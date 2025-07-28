@@ -97,12 +97,406 @@ const inMemoryDB = {
       updatedAt: new Date()
     }
   ],
-  doctors: [],
-  patients: [],
-  appointments: [],
-  departments: [],
-  pharmacy: [],
-  shifts: []
+  doctors: [
+    {
+      id: 1,
+      firstName: "Dr. Sarah",
+      lastName: "Johnson",
+      gender: "Female",
+      mobile: "5551234567",
+      designation: "Neurologist",
+      department: "Neurology",
+      address: "123 Brain Institute Dr",
+      email: "sarah.johnson@hospital.com",
+      birth: "1980-05-15T00:00:00.000Z",
+      education: "MD, Neurology",
+      doctorimg: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 2,
+      firstName: "Dr. Michael",
+      lastName: "Chen",
+      gender: "Male",
+      mobile: "5552345678",
+      designation: "Orthopedic Surgeon",
+      department: "Orthopedics",
+      address: "456 Bone Health Way",
+      email: "michael.chen@hospital.com",
+      birth: "1975-08-22T00:00:00.000Z",
+      education: "MD, Orthopedic Surgery",
+      doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 3,
+      firstName: "Dr. Emily",
+      lastName: "Rodriguez",
+      gender: "Female",
+      mobile: "5553456789",
+      designation: "Gynecologist",
+      department: "Gynaecology",
+      address: "789 Women Health Plaza",
+      email: "emily.rodriguez@hospital.com",
+      birth: "1982-12-10T00:00:00.000Z",
+      education: "MD, Gynecology",
+      doctorimg: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 4,
+      firstName: "Dr. David",
+      lastName: "Thompson",
+      gender: "Male",
+      mobile: "5554567890",
+      designation: "Microbiologist",
+      department: "Microbiology",
+      address: "321 Lab Research Ave",
+      email: "david.thompson@hospital.com",
+      birth: "1978-03-25T00:00:00.000Z",
+      education: "MD, Microbiology",
+      doctorimg: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 5,
+      firstName: "Dr. Lisa",
+      lastName: "Wang",
+      gender: "Female",
+      mobile: "5555678901",
+      designation: "Neurologist",
+      department: "Neurology",
+      address: "654 Brain Center Blvd",
+      email: "lisa.wang@hospital.com",
+      birth: "1985-07-18T00:00:00.000Z",
+      education: "MD, Neurology",
+      doctorimg: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 6,
+      firstName: "Dr. James",
+      lastName: "Wilson",
+      gender: "Male",
+      mobile: "5556789012",
+      designation: "Orthopedic Surgeon",
+      department: "Orthopedics",
+      address: "987 Joint Care St",
+      email: "james.wilson@hospital.com",
+      birth: "1973-11-30T00:00:00.000Z",
+      education: "MD, Orthopedic Surgery",
+      doctorimg: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 7,
+      firstName: "Dr. Maria",
+      lastName: "Garcia",
+      gender: "Female",
+      mobile: "5557890123",
+      designation: "Gynecologist",
+      department: "Gynaecology",
+      address: "147 Women Care Rd",
+      email: "maria.garcia@hospital.com",
+      birth: "1981-04-12T00:00:00.000Z",
+      education: "MD, Gynecology",
+      doctorimg: "https://images.unsplash.com/photo-1551601651-bc60f254d532?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 8,
+      firstName: "Dr. Robert",
+      lastName: "Brown",
+      gender: "Male",
+      mobile: "5558901234",
+      designation: "Cardiologist",
+      department: "Cardiology",
+      address: "258 Heart Center Dr",
+      email: "robert.brown@hospital.com",
+      birth: "1976-09-05T00:00:00.000Z",
+      education: "MD, Cardiology",
+      doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  patients: [
+    {
+      id: 1,
+      firstName: "Alice",
+      lastName: "Brown",
+      gender: "Female",
+      mobile: "5551234567",
+      email: "alice.brown@demo.com",
+      birth: "1990-03-15T00:00:00.000Z",
+      bloodGroup: "O+",
+      address: "123 Health St",
+      patientImg: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      age: 34,
+      maritalStatus: "Married",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 2,
+      firstName: "Bob",
+      lastName: "Wilson",
+      gender: "Male",
+      mobile: "5552345678",
+      email: "bob.wilson@demo.com",
+      birth: "1985-07-22T00:00:00.000Z",
+      bloodGroup: "A-",
+      address: "456 Medical Ave",
+      patientImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      age: 39,
+      maritalStatus: "Single",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 3,
+      firstName: "Carol",
+      lastName: "Davis",
+      gender: "Female",
+      mobile: "5553456789",
+      email: "carol.davis@demo.com",
+      birth: "1992-11-10T00:00:00.000Z",
+      bloodGroup: "B+",
+      address: "789 Care Blvd",
+      patientImg: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+      age: 31,
+      maritalStatus: "Married",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 4,
+      firstName: "David",
+      lastName: "Miller",
+      gender: "Male",
+      mobile: "5554567890",
+      email: "david.miller@demo.com",
+      birth: "1988-04-25T00:00:00.000Z",
+      bloodGroup: "AB+",
+      address: "321 Wellness Rd",
+      patientImg: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      age: 36,
+      maritalStatus: "Divorced",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 5,
+      firstName: "Emma",
+      lastName: "Johnson",
+      gender: "Female",
+      mobile: "5555678901",
+      email: "emma.johnson@demo.com",
+      birth: "1995-09-18T00:00:00.000Z",
+      bloodGroup: "O-",
+      address: "654 Health Center Dr",
+      patientImg: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+      age: 28,
+      maritalStatus: "Single",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 6,
+      firstName: "Michael",
+      lastName: "Taylor",
+      gender: "Male",
+      mobile: "5556789012",
+      email: "michael.taylor@demo.com",
+      birth: "1982-12-03T00:00:00.000Z",
+      bloodGroup: "A+",
+      address: "987 Medical Plaza",
+      patientImg: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+      age: 42,
+      maritalStatus: "Married",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  appointments: [
+    {
+      id: 1,
+      patientName: "Alice Brown",
+      doctorName: "Dr. Sarah Johnson",
+      date_of_appointment: "2025-01-15T10:00:00.000Z",
+      time: "10:00 AM",
+      status: "Scheduled",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 2,
+      patientName: "Bob Wilson",
+      doctorName: "Dr. Michael Chen",
+      date_of_appointment: "2025-01-16T14:00:00.000Z",
+      time: "2:00 PM",
+      status: "Completed",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 3,
+      patientName: "Carol Davis",
+      doctorName: "Dr. Emily Rodriguez",
+      date_of_appointment: "2025-01-17T09:00:00.000Z",
+      time: "9:00 AM",
+      status: "Scheduled",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 4,
+      patientName: "David Miller",
+      doctorName: "Dr. Lisa Wang",
+      date_of_appointment: "2025-01-18T11:00:00.000Z",
+      time: "11:00 AM",
+      status: "Scheduled",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 5,
+      patientName: "Emma Johnson",
+      doctorName: "Dr. Robert Brown",
+      date_of_appointment: "2025-01-19T15:00:00.000Z",
+      time: "3:00 PM",
+      status: "Scheduled",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  departments: [
+    {
+      id: 1,
+      name: "Neurology",
+      description: "Specialized in neurological disorders",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 2,
+      name: "Orthopedics",
+      description: "Bone and joint care",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 3,
+      name: "Gynaecology",
+      description: "Women's health care",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 4,
+      name: "Microbiology",
+      description: "Laboratory and research",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 5,
+      name: "Cardiology",
+      description: "Heart and cardiovascular care",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  pharmacy: [
+    {
+      id: 1,
+      name: "Paracetamol",
+      companyname: "ABC Pharmaceuticals",
+      category: "Pain Relief",
+      price: 5.99,
+      stock: 150,
+      description: "Effective pain reliever and fever reducer",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 2,
+      name: "Amoxicillin",
+      companyname: "XYZ Medical",
+      category: "Antibiotic",
+      price: 12.50,
+      stock: 75,
+      description: "Broad-spectrum antibiotic for bacterial infections",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 3,
+      name: "Ibuprofen",
+      companyname: "HealthCare Inc",
+      category: "Anti-inflammatory",
+      price: 8.25,
+      stock: 200,
+      description: "Non-steroidal anti-inflammatory drug",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 4,
+      name: "Omeprazole",
+      companyname: "MediCorp",
+      category: "Gastric",
+      price: 15.75,
+      stock: 60,
+      description: "Proton pump inhibitor for acid reflux",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 5,
+      name: "Cetirizine",
+      companyname: "AllergyCare",
+      category: "Antihistamine",
+      price: 6.50,
+      stock: 120,
+      description: "Relieves allergy symptoms and hay fever",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  shifts: [
+    {
+      id: 1,
+      name: "Morning Shift",
+      startTime: "08:00",
+      endTime: "16:00",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 2,
+      name: "Evening Shift",
+      startTime: "16:00",
+      endTime: "00:00",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    },
+    {
+      id: 3,
+      name: "Night Shift",
+      startTime: "00:00",
+      endTime: "08:00",
+      createdAt: "2025-01-01T00:00:00.000Z",
+      updatedAt: "2025-01-01T00:00:00.000Z"
+    }
+  ]
 };
 
 // Production routes with in-memory database
@@ -176,6 +570,62 @@ const createProductionRoutes = () => {
     res.json({
       appointments: inMemoryDB.appointments,
       message: "Appointments data from in-memory database"
+    });
+  });
+
+  app.get("/api/departments", (req, res) => {
+    res.json({
+      departments: inMemoryDB.departments,
+      message: "Departments data from in-memory database"
+    });
+  });
+
+  app.get("/api/shifts", (req, res) => {
+    res.json({
+      shifts: inMemoryDB.shifts,
+      message: "Shifts data from in-memory database"
+    });
+  });
+
+  app.get("/api/pharmacy", (req, res) => {
+    res.json({
+      pharmacy: inMemoryDB.pharmacy,
+      message: "Pharmacy data from in-memory database"
+    });
+  });
+
+  app.get("/api/doctors/public", (req, res) => {
+    res.json({
+      doctors: inMemoryDB.doctors,
+      message: "Doctors data from in-memory database"
+    });
+  });
+
+  app.get("/api/doctor", (req, res) => {
+    res.json({
+      doctors: inMemoryDB.doctors,
+      message: "Doctors data from in-memory database"
+    });
+  });
+
+  app.get("/api/appointments/public", (req, res) => {
+    res.json({
+      appointments: inMemoryDB.appointments,
+      message: "Appointments data from in-memory database"
+    });
+  });
+
+  app.get("/api/patients/public", (req, res) => {
+    res.json({
+      patients: inMemoryDB.patients,
+      message: "Patients data from in-memory database"
+    });
+  });
+
+  app.get("/api/pharmacy/public", (req, res) => {
+    res.json({
+      pharmacy: inMemoryDB.pharmacy,
+      message: "Pharmacy data from in-memory database"
     });
   });
 };
@@ -274,136 +724,7 @@ const createDemoRoutes = () => {
   // Demo data endpoints
   app.get("/api/doctors", (req, res) => {
     res.json({
-      doctors: [
-        {
-          id: 1,
-          firstName: "Dr. Sarah",
-          lastName: "Johnson",
-          gender: "Female",
-          mobile: "5551234567",
-          designation: "Neurologist",
-          department: "Neurology",
-          address: "123 Brain Institute Dr",
-          email: "sarah.johnson@hospital.com",
-          birth: "1980-05-15T00:00:00.000Z",
-          education: "MD, Neurology",
-          doctorimg: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 2,
-          firstName: "Dr. Michael",
-          lastName: "Chen",
-          gender: "Male",
-          mobile: "5552345678",
-          designation: "Orthopedic Surgeon",
-          department: "Orthopedics",
-          address: "456 Bone Health Way",
-          email: "michael.chen@hospital.com",
-          birth: "1975-08-22T00:00:00.000Z",
-          education: "MD, Orthopedic Surgery",
-          doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 3,
-          firstName: "Dr. Emily",
-          lastName: "Rodriguez",
-          gender: "Female",
-          mobile: "5553456789",
-          designation: "Gynecologist",
-          department: "Gynaecology",
-          address: "789 Women Health Plaza",
-          email: "emily.rodriguez@hospital.com",
-          birth: "1982-12-10T00:00:00.000Z",
-          education: "MD, Gynecology",
-          doctorimg: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 4,
-          firstName: "Dr. David",
-          lastName: "Thompson",
-          gender: "Male",
-          mobile: "5554567890",
-          designation: "Microbiologist",
-          department: "Microbiology",
-          address: "321 Lab Research Ave",
-          email: "david.thompson@hospital.com",
-          birth: "1978-03-25T00:00:00.000Z",
-          education: "MD, Microbiology",
-          doctorimg: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 5,
-          firstName: "Dr. Lisa",
-          lastName: "Wang",
-          gender: "Female",
-          mobile: "5555678901",
-          designation: "Neurologist",
-          department: "Neurology",
-          address: "654 Brain Center Blvd",
-          email: "lisa.wang@hospital.com",
-          birth: "1985-07-18T00:00:00.000Z",
-          education: "MD, Neurology",
-          doctorimg: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 6,
-          firstName: "Dr. James",
-          lastName: "Wilson",
-          gender: "Male",
-          mobile: "5556789012",
-          designation: "Orthopedic Surgeon",
-          department: "Orthopedics",
-          address: "987 Joint Care St",
-          email: "james.wilson@hospital.com",
-          birth: "1973-11-30T00:00:00.000Z",
-          education: "MD, Orthopedic Surgery",
-          doctorimg: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 7,
-          firstName: "Dr. Maria",
-          lastName: "Garcia",
-          gender: "Female",
-          mobile: "5557890123",
-          designation: "Gynecologist",
-          department: "Gynaecology",
-          address: "147 Women Care Rd",
-          email: "maria.garcia@hospital.com",
-          birth: "1981-04-12T00:00:00.000Z",
-          education: "MD, Gynecology",
-          doctorimg: "https://images.unsplash.com/photo-1551601651-bc60f254d532?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 8,
-          firstName: "Dr. Robert",
-          lastName: "Brown",
-          gender: "Male",
-          mobile: "5558901234",
-          designation: "Cardiologist",
-          department: "Cardiology",
-          address: "258 Heart Center Dr",
-          email: "robert.brown@hospital.com",
-          birth: "1976-09-05T00:00:00.000Z",
-          education: "MD, Cardiology",
-          doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        }
-      ],
+      doctors: inMemoryDB.doctors,
       demo: true,
       message: "Demo data - No real database connection"
     });
@@ -411,136 +732,7 @@ const createDemoRoutes = () => {
 
   app.get("/api/doctors/public", (req, res) => {
     res.json({
-      doctors: [
-        {
-          id: 1,
-          firstName: "Dr. Sarah",
-          lastName: "Johnson",
-          gender: "Female",
-          mobile: "5551234567",
-          designation: "Neurologist",
-          department: "Neurology",
-          address: "123 Brain Institute Dr",
-          email: "sarah.johnson@hospital.com",
-          birth: "1980-05-15T00:00:00.000Z",
-          education: "MD, Neurology",
-          doctorimg: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 2,
-          firstName: "Dr. Michael",
-          lastName: "Chen",
-          gender: "Male",
-          mobile: "5552345678",
-          designation: "Orthopedic Surgeon",
-          department: "Orthopedics",
-          address: "456 Bone Health Way",
-          email: "michael.chen@hospital.com",
-          birth: "1975-08-22T00:00:00.000Z",
-          education: "MD, Orthopedic Surgery",
-          doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 3,
-          firstName: "Dr. Emily",
-          lastName: "Rodriguez",
-          gender: "Female",
-          mobile: "5553456789",
-          designation: "Gynecologist",
-          department: "Gynaecology",
-          address: "789 Women Health Plaza",
-          email: "emily.rodriguez@hospital.com",
-          birth: "1982-12-10T00:00:00.000Z",
-          education: "MD, Gynecology",
-          doctorimg: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 4,
-          firstName: "Dr. David",
-          lastName: "Thompson",
-          gender: "Male",
-          mobile: "5554567890",
-          designation: "Microbiologist",
-          department: "Microbiology",
-          address: "321 Lab Research Ave",
-          email: "david.thompson@hospital.com",
-          birth: "1978-03-25T00:00:00.000Z",
-          education: "MD, Microbiology",
-          doctorimg: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 5,
-          firstName: "Dr. Lisa",
-          lastName: "Wang",
-          gender: "Female",
-          mobile: "5555678901",
-          designation: "Neurologist",
-          department: "Neurology",
-          address: "654 Brain Center Blvd",
-          email: "lisa.wang@hospital.com",
-          birth: "1985-07-18T00:00:00.000Z",
-          education: "MD, Neurology",
-          doctorimg: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 6,
-          firstName: "Dr. James",
-          lastName: "Wilson",
-          gender: "Male",
-          mobile: "5556789012",
-          designation: "Orthopedic Surgeon",
-          department: "Orthopedics",
-          address: "987 Joint Care St",
-          email: "james.wilson@hospital.com",
-          birth: "1973-11-30T00:00:00.000Z",
-          education: "MD, Orthopedic Surgery",
-          doctorimg: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 7,
-          firstName: "Dr. Maria",
-          lastName: "Garcia",
-          gender: "Female",
-          mobile: "5557890123",
-          designation: "Gynecologist",
-          department: "Gynaecology",
-          address: "147 Women Care Rd",
-          email: "maria.garcia@hospital.com",
-          birth: "1981-04-12T00:00:00.000Z",
-          education: "MD, Gynecology",
-          doctorimg: "https://images.unsplash.com/photo-1551601651-bc60f254d532?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 8,
-          firstName: "Dr. Robert",
-          lastName: "Brown",
-          gender: "Male",
-          mobile: "5558901234",
-          designation: "Cardiologist",
-          department: "Cardiology",
-          address: "258 Heart Center Dr",
-          email: "robert.brown@hospital.com",
-          birth: "1976-09-05T00:00:00.000Z",
-          education: "MD, Cardiology",
-          doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        }
-      ],
+      doctors: inMemoryDB.doctors,
       demo: true,
       message: "Demo data - No real database connection"
     });
@@ -548,136 +740,7 @@ const createDemoRoutes = () => {
 
   app.get("/api/doctor", (req, res) => {
     res.json({
-      doctors: [
-        {
-          id: 1,
-          firstName: "Dr. Sarah",
-          lastName: "Johnson",
-          gender: "Female",
-          mobile: "5551234567",
-          designation: "Neurologist",
-          department: "Neurology",
-          address: "123 Brain Institute Dr",
-          email: "sarah.johnson@hospital.com",
-          birth: "1980-05-15T00:00:00.000Z",
-          education: "MD, Neurology",
-          doctorimg: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 2,
-          firstName: "Dr. Michael",
-          lastName: "Chen",
-          gender: "Male",
-          mobile: "5552345678",
-          designation: "Orthopedic Surgeon",
-          department: "Orthopedics",
-          address: "456 Bone Health Way",
-          email: "michael.chen@hospital.com",
-          birth: "1975-08-22T00:00:00.000Z",
-          education: "MD, Orthopedic Surgery",
-          doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 3,
-          firstName: "Dr. Emily",
-          lastName: "Rodriguez",
-          gender: "Female",
-          mobile: "5553456789",
-          designation: "Gynecologist",
-          department: "Gynaecology",
-          address: "789 Women Health Plaza",
-          email: "emily.rodriguez@hospital.com",
-          birth: "1982-12-10T00:00:00.000Z",
-          education: "MD, Gynecology",
-          doctorimg: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 4,
-          firstName: "Dr. David",
-          lastName: "Thompson",
-          gender: "Male",
-          mobile: "5554567890",
-          designation: "Microbiologist",
-          department: "Microbiology",
-          address: "321 Lab Research Ave",
-          email: "david.thompson@hospital.com",
-          birth: "1978-03-25T00:00:00.000Z",
-          education: "MD, Microbiology",
-          doctorimg: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 5,
-          firstName: "Dr. Lisa",
-          lastName: "Wang",
-          gender: "Female",
-          mobile: "5555678901",
-          designation: "Neurologist",
-          department: "Neurology",
-          address: "654 Brain Center Blvd",
-          email: "lisa.wang@hospital.com",
-          birth: "1985-07-18T00:00:00.000Z",
-          education: "MD, Neurology",
-          doctorimg: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 6,
-          firstName: "Dr. James",
-          lastName: "Wilson",
-          gender: "Male",
-          mobile: "5556789012",
-          designation: "Orthopedic Surgeon",
-          department: "Orthopedics",
-          address: "987 Joint Care St",
-          email: "james.wilson@hospital.com",
-          birth: "1973-11-30T00:00:00.000Z",
-          education: "MD, Orthopedic Surgery",
-          doctorimg: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 7,
-          firstName: "Dr. Maria",
-          lastName: "Garcia",
-          gender: "Female",
-          mobile: "5557890123",
-          designation: "Gynecologist",
-          department: "Gynaecology",
-          address: "147 Women Care Rd",
-          email: "maria.garcia@hospital.com",
-          birth: "1981-04-12T00:00:00.000Z",
-          education: "MD, Gynecology",
-          doctorimg: "https://images.unsplash.com/photo-1551601651-bc60f254d532?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 8,
-          firstName: "Dr. Robert",
-          lastName: "Brown",
-          gender: "Male",
-          mobile: "5558901234",
-          designation: "Cardiologist",
-          department: "Cardiology",
-          address: "258 Heart Center Dr",
-          email: "robert.brown@hospital.com",
-          birth: "1976-09-05T00:00:00.000Z",
-          education: "MD, Cardiology",
-          doctorimg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        }
-      ],
+      doctors: inMemoryDB.doctors,
       demo: true,
       message: "Demo data - No real database connection"
     });
@@ -685,38 +748,7 @@ const createDemoRoutes = () => {
 
   app.get("/api/appointments/public", (req, res) => {
     res.json({
-      appointments: [
-        {
-          id: 1,
-          patientName: "Alice Brown",
-          doctorName: "Dr. Sarah Johnson",
-          date_of_appointment: "2025-01-15T10:00:00.000Z",
-          time: "10:00 AM",
-          status: "Scheduled",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 2,
-          patientName: "Bob Wilson",
-          doctorName: "Dr. Michael Chen",
-          date_of_appointment: "2025-01-16T14:00:00.000Z",
-          time: "2:00 PM",
-          status: "Completed",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 3,
-          patientName: "Carol Davis",
-          doctorName: "Dr. Emily Rodriguez",
-          date_of_appointment: "2025-01-17T09:00:00.000Z",
-          time: "9:00 AM",
-          status: "Scheduled",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        }
-      ],
+      appointments: inMemoryDB.appointments,
       demo: true,
       message: "Demo data - No real database connection"
     });
@@ -724,104 +756,7 @@ const createDemoRoutes = () => {
 
   app.get("/api/patients/public", (req, res) => {
     res.json({
-      patients: [
-        {
-          id: 1,
-          firstName: "Alice",
-          lastName: "Brown",
-          gender: "Female",
-          mobile: "5551234567",
-          email: "alice.brown@demo.com",
-          birth: "1990-03-15T00:00:00.000Z",
-          bloodGroup: "O+",
-          address: "123 Health St",
-          patientImg: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-          age: 34,
-          maritalStatus: "Married",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 2,
-          firstName: "Bob",
-          lastName: "Wilson",
-          gender: "Male",
-          mobile: "5552345678",
-          email: "bob.wilson@demo.com",
-          birth: "1985-07-22T00:00:00.000Z",
-          bloodGroup: "A-",
-          address: "456 Medical Ave",
-          patientImg: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-          age: 39,
-          maritalStatus: "Single",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 3,
-          firstName: "Carol",
-          lastName: "Davis",
-          gender: "Female",
-          mobile: "5553456789",
-          email: "carol.davis@demo.com",
-          birth: "1992-11-10T00:00:00.000Z",
-          bloodGroup: "B+",
-          address: "789 Care Blvd",
-          patientImg: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-          age: 31,
-          maritalStatus: "Married",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 4,
-          firstName: "David",
-          lastName: "Miller",
-          gender: "Male",
-          mobile: "5554567890",
-          email: "david.miller@demo.com",
-          birth: "1988-04-25T00:00:00.000Z",
-          bloodGroup: "AB+",
-          address: "321 Wellness Rd",
-          patientImg: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-          age: 36,
-          maritalStatus: "Divorced",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 5,
-          firstName: "Emma",
-          lastName: "Johnson",
-          gender: "Female",
-          mobile: "5555678901",
-          email: "emma.johnson@demo.com",
-          birth: "1995-09-18T00:00:00.000Z",
-          bloodGroup: "O-",
-          address: "654 Health Center Dr",
-          patientImg: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
-          age: 28,
-          maritalStatus: "Single",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 6,
-          firstName: "Michael",
-          lastName: "Taylor",
-          gender: "Male",
-          mobile: "5556789012",
-          email: "michael.taylor@demo.com",
-          birth: "1982-12-03T00:00:00.000Z",
-          bloodGroup: "A+",
-          address: "987 Medical Plaza",
-          patientImg: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-          age: 42,
-          maritalStatus: "Married",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        }
-      ],
+      patients: inMemoryDB.patients,
       demo: true,
       message: "Demo data - No real database connection"
     });
@@ -829,63 +764,48 @@ const createDemoRoutes = () => {
 
   app.get("/api/pharmacy/public", (req, res) => {
     res.json({
-      pharmacy: [
-        {
-          id: 1,
-          name: "Paracetamol",
-          companyname: "ABC Pharmaceuticals",
-          category: "Pain Relief",
-          price: 5.99,
-          stock: 150,
-          description: "Effective pain reliever and fever reducer",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 2,
-          name: "Amoxicillin",
-          companyname: "XYZ Medical",
-          category: "Antibiotic",
-          price: 12.50,
-          stock: 75,
-          description: "Broad-spectrum antibiotic for bacterial infections",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 3,
-          name: "Ibuprofen",
-          companyname: "HealthCare Inc",
-          category: "Anti-inflammatory",
-          price: 8.25,
-          stock: 200,
-          description: "Non-steroidal anti-inflammatory drug",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 4,
-          name: "Omeprazole",
-          companyname: "MediCorp",
-          category: "Gastric",
-          price: 15.75,
-          stock: 60,
-          description: "Proton pump inhibitor for acid reflux",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        },
-        {
-          id: 5,
-          name: "Cetirizine",
-          companyname: "AllergyCare",
-          category: "Antihistamine",
-          price: 6.50,
-          stock: 120,
-          description: "Relieves allergy symptoms and hay fever",
-          createdAt: "2025-01-01T00:00:00.000Z",
-          updatedAt: "2025-01-01T00:00:00.000Z"
-        }
-      ],
+      pharmacy: inMemoryDB.pharmacy,
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  // Add more endpoints for all data types
+  app.get("/api/departments", (req, res) => {
+    res.json({
+      departments: inMemoryDB.departments,
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/shifts", (req, res) => {
+    res.json({
+      shifts: inMemoryDB.shifts,
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/pharmacy", (req, res) => {
+    res.json({
+      pharmacy: inMemoryDB.pharmacy,
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/appointments", (req, res) => {
+    res.json({
+      appointments: inMemoryDB.appointments,
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/patients", (req, res) => {
+    res.json({
+      patients: inMemoryDB.patients,
       demo: true,
       message: "Demo data - No real database connection"
     });
