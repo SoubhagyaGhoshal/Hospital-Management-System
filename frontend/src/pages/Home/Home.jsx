@@ -13,7 +13,7 @@ import { loginAdmin } from "../../Api/AdminApi";
 import { loginPatient } from "../../Api/PatientApi";
 import { doctorLogin } from "../../Api/DoctorApi";
 import { useNavigate } from "react-router-dom";
-// import ConnectionTest from "../../components/ConnectionTest";
+import ConnectionTest from "../../components/ConnectionTest";
 
 function Home() {
   const [showPassword, setShowPassword] = useState(false);
@@ -83,6 +83,9 @@ function Home() {
 
   return (
     <div className="md:flex md:h-[110vh]">
+      {/* Connection Test - Temporary for debugging */}
+      {/* <ConnectionTest /> */}
+      
       {/* Left Side - Background Image */}
       <div className="md:w-[50%]">
         <img

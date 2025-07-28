@@ -10,7 +10,7 @@ try {
   console.log("✅ Database module loaded successfully");
 } catch (error) {
   console.log("⚠️  Database module not available:", error.message);
-  console.log("📝 Server will run without database functionality");
+  console.log("📝 Server will run in demo mode without database functionality");
   globalDbConnected = false;
 }
 
@@ -25,12 +25,12 @@ const pharmacyRouter = require("./routes/pharmacyRoutes");
 // Database connection and sync with timeout handling
 const initializeDatabase = async () => {
   if (!db) {
-    console.log("📝 No database available, skipping initialization");
+    console.log("📝 No database available, running in demo mode");
     return;
   }
 
   const timeout = setTimeout(() => {
-    console.log('⏰ Database connection timed out, continuing without database...');
+    console.log('⏰ Database connection timed out, continuing in demo mode...');
     global.dbConnected = false;
   }, 10000); // 10 second timeout
 
@@ -78,7 +78,7 @@ const initializeDatabase = async () => {
     
     // Set global flag to indicate database is not available
     global.dbConnected = false;
-    console.log('📝 Continuing without database connection...');
+    console.log('📝 Continuing in demo mode without database connection...');
     clearTimeout(timeout);
   }
 };
@@ -101,7 +101,8 @@ app.get("/", (req, res) => {
     message: "Hospital Management System API is running!", 
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
-    databaseConnected: global.dbConnected || false
+    databaseConnected: global.dbConnected || false,
+    mode: global.dbConnected ? 'production' : 'demo'
   });
 });
 
@@ -111,7 +112,8 @@ app.get("/health", (req, res) => {
     status: "healthy", 
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development',
-    databaseConnected: global.dbConnected || false
+    databaseConnected: global.dbConnected || false,
+    mode: global.dbConnected ? 'production' : 'demo'
   });
 });
 
@@ -122,12 +124,100 @@ app.get("/test", (req, res) => {
     timestamp: new Date().toISOString(),
     method: req.method,
     url: req.url,
-    databaseConnected: global.dbConnected || false
+    databaseConnected: global.dbConnected || false,
+    mode: global.dbConnected ? 'production' : 'demo'
   });
 });
 
-// Only add API routes if database is available
-if (db) {
+// Demo mode API routes
+const createDemoRoutes = () => {
+  // Admin login demo
+  app.post("/api/admin", (req, res) => {
+    const { username, password } = req.body;
+    
+    if (username === "admin" && password === "admin123") {
+      const token = "demo-token-" + Date.now();
+      res.json({
+        success: true,
+        message: "Login successful (Demo Mode)",
+        token: token,
+        user: {
+          username: "admin",
+          role: "admin"
+        },
+        demo: true
+      });
+    } else {
+      res.status(401).json({
+        error: "Invalid credentials",
+        message: "Please use admin/admin123 for demo mode",
+        demo: true
+      });
+    }
+  });
+
+  // Demo data endpoints
+  app.get("/api/doctors", (req, res) => {
+    res.json({
+      doctors: [
+        {
+          id: 1,
+          name: "Dr. John Smith",
+          specialization: "Cardiology",
+          email: "john.smith@demo.com",
+          phone: "+1234567890"
+        },
+        {
+          id: 2,
+          name: "Dr. Sarah Johnson",
+          specialization: "Neurology",
+          email: "sarah.johnson@demo.com",
+          phone: "+1234567891"
+        }
+      ],
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/patients", (req, res) => {
+    res.json({
+      patients: [
+        {
+          id: 1,
+          name: "Alice Brown",
+          email: "alice.brown@demo.com",
+          phone: "+1234567892",
+          bloodGroup: "O+"
+        },
+        {
+          id: 2,
+          name: "Bob Wilson",
+          email: "bob.wilson@demo.com",
+          phone: "+1234567893",
+          bloodGroup: "A-"
+        }
+      ],
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  // Generic demo response for other endpoints
+  app.use("/api", (req, res) => {
+    res.status(503).json({ 
+      error: 'Demo mode - Database not available',
+      message: 'This is a demo version. Please use admin/admin123 to login.',
+      demo: true,
+      timestamp: new Date().toISOString(),
+      note: "Full functionality requires database connection"
+    });
+  });
+};
+
+// Add routes based on database availability
+if (db && global.dbConnected) {
+  console.log("✅ Using production routes with database");
   app.use(
     "/api",
     doctorRouter,
@@ -139,7 +229,8 @@ if (db) {
     pharmacyRouter
   );
 } else {
-  console.log("⚠️  API routes disabled - no database available");
+  console.log("⚠️  Using demo routes without database");
+  createDemoRoutes();
 }
 
 // Global error handler
@@ -147,7 +238,8 @@ app.use((err, req, res, next) => {
   console.error('❌ Global error handler:', err);
   res.status(500).json({ 
     error: 'Internal server error',
-    message: err.message 
+    message: err.message,
+    demo: !global.dbConnected
   });
 });
 
@@ -156,7 +248,8 @@ app.use((req, res) => {
   res.status(404).json({ 
     error: 'Route not found',
     path: req.path,
-    method: req.method
+    method: req.method,
+    demo: !global.dbConnected
   });
 });
 
@@ -167,6 +260,7 @@ app.listen(PORT, () => {
   console.log(`🚀 Server is Running on ${PORT}`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
   console.log(`🔗 Database URL: ${process.env.DATABASE_URL ? 'Set' : 'Not set'}`);
+  console.log(`📊 Mode: ${global.dbConnected ? 'Production' : 'Demo'}`);
   
   // Initialize database in background
   initializeDatabase().catch(err => {

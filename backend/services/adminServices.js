@@ -1,15 +1,8 @@
 const { where } = require("sequelize");
 const db = require("../models/index");
 const jwt = require("jsonwebtoken");
+const { generateToken } = require("../middleware/Auth");
 const User = db.User;
-
-const SECRET_KEY = process.env.SECRET_KEY || "hospital_management_secret_key_2024";
-
-const generateToken = (payload) => {
-  // Add expiration time (24 hours)
-  const expiresIn = '24h';
-  return jwt.sign(payload, SECRET_KEY, { expiresIn });
-};
 
 const adminService = {
   findAdminService: async (username, password) => {

@@ -3,6 +3,12 @@ require("dotenv").config();
 
 const SECRET_KEY = process.env.SECRET_KEY || "hospital_management_secret_key_2024";
 
+const generateToken = (payload) => {
+  // Add expiration time (24 hours)
+  const expiresIn = '24h';
+  return jwt.sign(payload, SECRET_KEY, { expiresIn });
+};
+
 const authenticateToken = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -33,4 +39,4 @@ const authenticateToken = async (req, res, next) => {
   }
 };
 
-module.exports = { authenticateToken };
+module.exports = { authenticateToken, generateToken };
