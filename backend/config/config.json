@@ -14,11 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "hospital_user",
-    "password": "Soubhagyag73@",
-    "database": "hospital",
-    "host": "dpg-cp8qj8i1hbls73f8qj8g-a.oregon-postgres.render.com",
-    "port": 5432,
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
@@ -26,7 +22,13 @@
         "rejectUnauthorized": false
       }
     },
-    "logging": false
+    "logging": false,
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    }
   }
 }
 

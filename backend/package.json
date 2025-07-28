@@ -20,6 +20,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "quick-start": "node start.js",
+    "test-deployment": "node test-deployment.js",
     "dev": "nodemon server.js"
   },
   "author": "Dharmik Odedara",

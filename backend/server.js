@@ -9,8 +9,13 @@ const appointmentRouter = require("./routes/appointmentRouter");
 const pharmacyRouter = require("./routes/pharmacyRoutes");
 const cors = require("cors");
 
-// Database connection and sync
+// Database connection and sync with timeout handling
 const initializeDatabase = async () => {
+  const timeout = setTimeout(() => {
+    console.log('Database connection timed out, continuing without database...');
+    global.dbConnected = false;
+  }, 10000); // 10 second timeout
+
   try {
     console.log('Attempting to connect to database...');
     console.log('Database config:', {
@@ -43,6 +48,7 @@ const initializeDatabase = async () => {
     
     // Set global flag to indicate database is available
     global.dbConnected = true;
+    clearTimeout(timeout);
   } catch (error) {
     console.error('Unable to connect to the database:', error);
     console.error('Database error details:', error.message);
@@ -51,6 +57,7 @@ const initializeDatabase = async () => {
     // Set global flag to indicate database is not available
     global.dbConnected = false;
     console.log('Continuing without database connection...');
+    clearTimeout(timeout);
   }
 };
 
@@ -71,7 +78,8 @@ app.get("/", (req, res) => {
   res.json({ 
     message: "Hospital Management System API is running!", 
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    databaseConnected: global.dbConnected || false
   });
 });
 
@@ -80,7 +88,8 @@ app.get("/health", (req, res) => {
   res.json({ 
     status: "healthy", 
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    databaseConnected: global.dbConnected || false
   });
 });
 
@@ -90,7 +99,8 @@ app.get("/test", (req, res) => {
     message: "Server is working!", 
     timestamp: new Date().toISOString(),
     method: req.method,
-    url: req.url
+    url: req.url,
+    databaseConnected: global.dbConnected || false
   });
 });
 
@@ -125,9 +135,14 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, async () => {
+// Start server immediately, then initialize database
+app.listen(PORT, () => {
   console.log(`Server is Running on ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
   console.log(`Database URL: ${process.env.DATABASE_URL ? 'Set' : 'Not set'}`);
-  await initializeDatabase();
+  
+  // Initialize database in background
+  initializeDatabase().catch(err => {
+    console.error('Database initialization failed:', err);
+  });
 });
