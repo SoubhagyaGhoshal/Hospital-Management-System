@@ -628,6 +628,230 @@ const createProductionRoutes = () => {
       message: "Pharmacy data from in-memory database"
     });
   });
+
+  // Add CRUD endpoints for doctors
+  app.post("/api/doctor", (req, res) => {
+    const newDoctor = {
+      id: inMemoryDB.doctors.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.doctors.push(newDoctor);
+    res.json({
+      success: true,
+      message: "Doctor added successfully",
+      doctor: newDoctor
+    });
+  });
+
+  app.get("/api/doctor", (req, res) => {
+    res.json({
+      doctors: inMemoryDB.doctors,
+      message: "Doctors data from in-memory database"
+    });
+  });
+
+  app.get("/api/doctor/:id", (req, res) => {
+    const doctor = inMemoryDB.doctors.find(d => d.id == req.params.id);
+    if (doctor) {
+      res.json(doctor);
+    } else {
+      res.status(404).json({ error: "Doctor not found" });
+    }
+  });
+
+  app.put("/api/doctor/:id", (req, res) => {
+    const index = inMemoryDB.doctors.findIndex(d => d.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.doctors[index] = {
+        ...inMemoryDB.doctors[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Doctor updated successfully",
+        doctor: inMemoryDB.doctors[index]
+      });
+    } else {
+      res.status(404).json({ error: "Doctor not found" });
+    }
+  });
+
+  app.delete("/api/doctor/:id", (req, res) => {
+    const index = inMemoryDB.doctors.findIndex(d => d.id == req.params.id);
+    if (index !== -1) {
+      const deletedDoctor = inMemoryDB.doctors.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Doctor deleted successfully",
+        doctor: deletedDoctor
+      });
+    } else {
+      res.status(404).json({ error: "Doctor not found" });
+    }
+  });
+
+  // Add CRUD endpoints for patients
+  app.post("/api/patient", (req, res) => {
+    const newPatient = {
+      id: inMemoryDB.patients.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.patients.push(newPatient);
+    res.json({
+      success: true,
+      message: "Patient added successfully",
+      patient: newPatient
+    });
+  });
+
+  app.get("/api/patient", (req, res) => {
+    res.json({
+      patients: inMemoryDB.patients,
+      message: "Patients data from in-memory database"
+    });
+  });
+
+  app.get("/api/patient/:id", (req, res) => {
+    const patient = inMemoryDB.patients.find(p => p.id == req.params.id);
+    if (patient) {
+      res.json(patient);
+    } else {
+      res.status(404).json({ error: "Patient not found" });
+    }
+  });
+
+  app.put("/api/patient/:id", (req, res) => {
+    const index = inMemoryDB.patients.findIndex(p => p.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.patients[index] = {
+        ...inMemoryDB.patients[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Patient updated successfully",
+        patient: inMemoryDB.patients[index]
+      });
+    } else {
+      res.status(404).json({ error: "Patient not found" });
+    }
+  });
+
+  app.delete("/api/patient/:id", (req, res) => {
+    const index = inMemoryDB.patients.findIndex(p => p.id == req.params.id);
+    if (index !== -1) {
+      const deletedPatient = inMemoryDB.patients.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Patient deleted successfully",
+        patient: deletedPatient
+      });
+    } else {
+      res.status(404).json({ error: "Patient not found" });
+    }
+  });
+
+  // Add CRUD endpoints for appointments
+  app.post("/api/appointment", (req, res) => {
+    const newAppointment = {
+      id: inMemoryDB.appointments.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.appointments.push(newAppointment);
+    res.json({
+      success: true,
+      message: "Appointment added successfully",
+      appointment: newAppointment
+    });
+  });
+
+  app.put("/api/appointment/:id", (req, res) => {
+    const index = inMemoryDB.appointments.findIndex(a => a.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.appointments[index] = {
+        ...inMemoryDB.appointments[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Appointment updated successfully",
+        appointment: inMemoryDB.appointments[index]
+      });
+    } else {
+      res.status(404).json({ error: "Appointment not found" });
+    }
+  });
+
+  app.delete("/api/appointment/:id", (req, res) => {
+    const index = inMemoryDB.appointments.findIndex(a => a.id == req.params.id);
+    if (index !== -1) {
+      const deletedAppointment = inMemoryDB.appointments.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Appointment deleted successfully",
+        appointment: deletedAppointment
+      });
+    } else {
+      res.status(404).json({ error: "Appointment not found" });
+    }
+  });
+
+  // Add CRUD endpoints for pharmacy
+  app.post("/api/pharmacy", (req, res) => {
+    const newMedicine = {
+      id: inMemoryDB.pharmacy.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.pharmacy.push(newMedicine);
+    res.json({
+      success: true,
+      message: "Medicine added successfully",
+      medicine: newMedicine
+    });
+  });
+
+  app.put("/api/pharmacy/:id", (req, res) => {
+    const index = inMemoryDB.pharmacy.findIndex(m => m.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.pharmacy[index] = {
+        ...inMemoryDB.pharmacy[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Medicine updated successfully",
+        medicine: inMemoryDB.pharmacy[index]
+      });
+    } else {
+      res.status(404).json({ error: "Medicine not found" });
+    }
+  });
+
+  app.delete("/api/pharmacy/:id", (req, res) => {
+    const index = inMemoryDB.pharmacy.findIndex(m => m.id == req.params.id);
+    if (index !== -1) {
+      const deletedMedicine = inMemoryDB.pharmacy.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Medicine deleted successfully",
+        medicine: deletedMedicine
+      });
+    } else {
+      res.status(404).json({ error: "Medicine not found" });
+    }
+  });
 };
 
 const app = express();
@@ -811,6 +1035,244 @@ const createDemoRoutes = () => {
     });
   });
 
+  // Add CRUD endpoints for doctors in demo mode
+  app.post("/api/doctor", (req, res) => {
+    const newDoctor = {
+      id: inMemoryDB.doctors.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.doctors.push(newDoctor);
+    res.json({
+      success: true,
+      message: "Doctor added successfully (Demo Mode)",
+      doctor: newDoctor,
+      demo: true
+    });
+  });
+
+  app.get("/api/doctor", (req, res) => {
+    res.json({
+      doctors: inMemoryDB.doctors,
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/doctor/:id", (req, res) => {
+    const doctor = inMemoryDB.doctors.find(d => d.id == req.params.id);
+    if (doctor) {
+      res.json({ ...doctor, demo: true });
+    } else {
+      res.status(404).json({ error: "Doctor not found", demo: true });
+    }
+  });
+
+  app.put("/api/doctor/:id", (req, res) => {
+    const index = inMemoryDB.doctors.findIndex(d => d.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.doctors[index] = {
+        ...inMemoryDB.doctors[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Doctor updated successfully (Demo Mode)",
+        doctor: inMemoryDB.doctors[index],
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Doctor not found", demo: true });
+    }
+  });
+
+  app.delete("/api/doctor/:id", (req, res) => {
+    const index = inMemoryDB.doctors.findIndex(d => d.id == req.params.id);
+    if (index !== -1) {
+      const deletedDoctor = inMemoryDB.doctors.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Doctor deleted successfully (Demo Mode)",
+        doctor: deletedDoctor,
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Doctor not found", demo: true });
+    }
+  });
+
+  // Add CRUD endpoints for patients in demo mode
+  app.post("/api/patient", (req, res) => {
+    const newPatient = {
+      id: inMemoryDB.patients.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.patients.push(newPatient);
+    res.json({
+      success: true,
+      message: "Patient added successfully (Demo Mode)",
+      patient: newPatient,
+      demo: true
+    });
+  });
+
+  app.get("/api/patient", (req, res) => {
+    res.json({
+      patients: inMemoryDB.patients,
+      demo: true,
+      message: "Demo data - No real database connection"
+    });
+  });
+
+  app.get("/api/patient/:id", (req, res) => {
+    const patient = inMemoryDB.patients.find(p => p.id == req.params.id);
+    if (patient) {
+      res.json({ ...patient, demo: true });
+    } else {
+      res.status(404).json({ error: "Patient not found", demo: true });
+    }
+  });
+
+  app.put("/api/patient/:id", (req, res) => {
+    const index = inMemoryDB.patients.findIndex(p => p.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.patients[index] = {
+        ...inMemoryDB.patients[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Patient updated successfully (Demo Mode)",
+        patient: inMemoryDB.patients[index],
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Patient not found", demo: true });
+    }
+  });
+
+  app.delete("/api/patient/:id", (req, res) => {
+    const index = inMemoryDB.patients.findIndex(p => p.id == req.params.id);
+    if (index !== -1) {
+      const deletedPatient = inMemoryDB.patients.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Patient deleted successfully (Demo Mode)",
+        patient: deletedPatient,
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Patient not found", demo: true });
+    }
+  });
+
+  // Add CRUD endpoints for appointments in demo mode
+  app.post("/api/appointment", (req, res) => {
+    const newAppointment = {
+      id: inMemoryDB.appointments.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.appointments.push(newAppointment);
+    res.json({
+      success: true,
+      message: "Appointment added successfully (Demo Mode)",
+      appointment: newAppointment,
+      demo: true
+    });
+  });
+
+  app.put("/api/appointment/:id", (req, res) => {
+    const index = inMemoryDB.appointments.findIndex(a => a.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.appointments[index] = {
+        ...inMemoryDB.appointments[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Appointment updated successfully (Demo Mode)",
+        appointment: inMemoryDB.appointments[index],
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Appointment not found", demo: true });
+    }
+  });
+
+  app.delete("/api/appointment/:id", (req, res) => {
+    const index = inMemoryDB.appointments.findIndex(a => a.id == req.params.id);
+    if (index !== -1) {
+      const deletedAppointment = inMemoryDB.appointments.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Appointment deleted successfully (Demo Mode)",
+        appointment: deletedAppointment,
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Appointment not found", demo: true });
+    }
+  });
+
+  // Add CRUD endpoints for pharmacy in demo mode
+  app.post("/api/pharmacy", (req, res) => {
+    const newMedicine = {
+      id: inMemoryDB.pharmacy.length + 1,
+      ...req.body,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    inMemoryDB.pharmacy.push(newMedicine);
+    res.json({
+      success: true,
+      message: "Medicine added successfully (Demo Mode)",
+      medicine: newMedicine,
+      demo: true
+    });
+  });
+
+  app.put("/api/pharmacy/:id", (req, res) => {
+    const index = inMemoryDB.pharmacy.findIndex(m => m.id == req.params.id);
+    if (index !== -1) {
+      inMemoryDB.pharmacy[index] = {
+        ...inMemoryDB.pharmacy[index],
+        ...req.body,
+        updatedAt: new Date().toISOString()
+      };
+      res.json({
+        success: true,
+        message: "Medicine updated successfully (Demo Mode)",
+        medicine: inMemoryDB.pharmacy[index],
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Medicine not found", demo: true });
+    }
+  });
+
+  app.delete("/api/pharmacy/:id", (req, res) => {
+    const index = inMemoryDB.pharmacy.findIndex(m => m.id == req.params.id);
+    if (index !== -1) {
+      const deletedMedicine = inMemoryDB.pharmacy.splice(index, 1)[0];
+      res.json({
+        success: true,
+        message: "Medicine deleted successfully (Demo Mode)",
+        medicine: deletedMedicine,
+        demo: true
+      });
+    } else {
+      res.status(404).json({ error: "Medicine not found", demo: true });
+    }
+  });
+
   // Generic demo response for other endpoints
   app.use("/api", (req, res) => {
     res.status(503).json({ 
@@ -828,6 +1290,230 @@ console.log("✅ Adding production routes");
 
 // Use in-memory database routes for production
 createProductionRoutes();
+
+// Add custom CRUD endpoints without authentication BEFORE the original routes
+app.post("/api/doctor", (req, res) => {
+  const newDoctor = {
+    id: inMemoryDB.doctors.length + 1,
+    ...req.body,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  inMemoryDB.doctors.push(newDoctor);
+  res.json({
+    success: true,
+    message: "Doctor added successfully",
+    doctor: newDoctor
+  });
+});
+
+app.get("/api/doctor", (req, res) => {
+  res.json({
+    doctors: inMemoryDB.doctors,
+    message: "Doctors data from in-memory database"
+  });
+});
+
+app.get("/api/doctor/:id", (req, res) => {
+  const doctor = inMemoryDB.doctors.find(d => d.id == req.params.id);
+  if (doctor) {
+    res.json(doctor);
+  } else {
+    res.status(404).json({ error: "Doctor not found" });
+  }
+});
+
+app.put("/api/doctor/:id", (req, res) => {
+  const index = inMemoryDB.doctors.findIndex(d => d.id == req.params.id);
+  if (index !== -1) {
+    inMemoryDB.doctors[index] = {
+      ...inMemoryDB.doctors[index],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    res.json({
+      success: true,
+      message: "Doctor updated successfully",
+      doctor: inMemoryDB.doctors[index]
+    });
+  } else {
+    res.status(404).json({ error: "Doctor not found" });
+  }
+});
+
+app.delete("/api/doctor/:id", (req, res) => {
+  const index = inMemoryDB.doctors.findIndex(d => d.id == req.params.id);
+  if (index !== -1) {
+    const deletedDoctor = inMemoryDB.doctors.splice(index, 1)[0];
+    res.json({
+      success: true,
+      message: "Doctor deleted successfully",
+      doctor: deletedDoctor
+    });
+  } else {
+    res.status(404).json({ error: "Doctor not found" });
+  }
+});
+
+// Add CRUD endpoints for patients
+app.post("/api/patient", (req, res) => {
+  const newPatient = {
+    id: inMemoryDB.patients.length + 1,
+    ...req.body,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  inMemoryDB.patients.push(newPatient);
+  res.json({
+    success: true,
+    message: "Patient added successfully",
+    patient: newPatient
+  });
+});
+
+app.get("/api/patient", (req, res) => {
+  res.json({
+    patients: inMemoryDB.patients,
+    message: "Patients data from in-memory database"
+  });
+});
+
+app.get("/api/patient/:id", (req, res) => {
+  const patient = inMemoryDB.patients.find(p => p.id == req.params.id);
+  if (patient) {
+    res.json(patient);
+  } else {
+    res.status(404).json({ error: "Patient not found" });
+  }
+});
+
+app.put("/api/patient/:id", (req, res) => {
+  const index = inMemoryDB.patients.findIndex(p => p.id == req.params.id);
+  if (index !== -1) {
+    inMemoryDB.patients[index] = {
+      ...inMemoryDB.patients[index],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    res.json({
+      success: true,
+      message: "Patient updated successfully",
+      patient: inMemoryDB.patients[index]
+    });
+  } else {
+    res.status(404).json({ error: "Patient not found" });
+  }
+});
+
+app.delete("/api/patient/:id", (req, res) => {
+  const index = inMemoryDB.patients.findIndex(p => p.id == req.params.id);
+  if (index !== -1) {
+    const deletedPatient = inMemoryDB.patients.splice(index, 1)[0];
+    res.json({
+      success: true,
+      message: "Patient deleted successfully",
+      patient: deletedPatient
+    });
+  } else {
+    res.status(404).json({ error: "Patient not found" });
+  }
+});
+
+// Add CRUD endpoints for appointments
+app.post("/api/appointment", (req, res) => {
+  const newAppointment = {
+    id: inMemoryDB.appointments.length + 1,
+    ...req.body,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  inMemoryDB.appointments.push(newAppointment);
+  res.json({
+    success: true,
+    message: "Appointment added successfully",
+    appointment: newAppointment
+  });
+});
+
+app.put("/api/appointment/:id", (req, res) => {
+  const index = inMemoryDB.appointments.findIndex(a => a.id == req.params.id);
+  if (index !== -1) {
+    inMemoryDB.appointments[index] = {
+      ...inMemoryDB.appointments[index],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    res.json({
+      success: true,
+      message: "Appointment updated successfully",
+      appointment: inMemoryDB.appointments[index]
+    });
+  } else {
+    res.status(404).json({ error: "Appointment not found" });
+  }
+});
+
+app.delete("/api/appointment/:id", (req, res) => {
+  const index = inMemoryDB.appointments.findIndex(a => a.id == req.params.id);
+  if (index !== -1) {
+    const deletedAppointment = inMemoryDB.appointments.splice(index, 1)[0];
+    res.json({
+      success: true,
+      message: "Appointment deleted successfully",
+      appointment: deletedAppointment
+    });
+  } else {
+    res.status(404).json({ error: "Appointment not found" });
+  }
+});
+
+// Add CRUD endpoints for pharmacy
+app.post("/api/pharmacy", (req, res) => {
+  const newMedicine = {
+    id: inMemoryDB.pharmacy.length + 1,
+    ...req.body,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  inMemoryDB.pharmacy.push(newMedicine);
+  res.json({
+    success: true,
+    message: "Medicine added successfully",
+    medicine: newMedicine
+  });
+});
+
+app.put("/api/pharmacy/:id", (req, res) => {
+  const index = inMemoryDB.pharmacy.findIndex(m => m.id == req.params.id);
+  if (index !== -1) {
+    inMemoryDB.pharmacy[index] = {
+      ...inMemoryDB.pharmacy[index],
+      ...req.body,
+      updatedAt: new Date().toISOString()
+    };
+    res.json({
+      success: true,
+      message: "Medicine updated successfully",
+      medicine: inMemoryDB.pharmacy[index]
+    });
+  } else {
+    res.status(404).json({ error: "Medicine not found" });
+  }
+});
+
+app.delete("/api/pharmacy/:id", (req, res) => {
+  const index = inMemoryDB.pharmacy.findIndex(m => m.id == req.params.id);
+  if (index !== -1) {
+    const deletedMedicine = inMemoryDB.pharmacy.splice(index, 1)[0];
+    res.json({
+      success: true,
+      message: "Medicine deleted successfully",
+      medicine: deletedMedicine
+    });
+  } else {
+    res.status(404).json({ error: "Medicine not found" });
+  }
+});
 
 // Also add the original routes as fallback
 app.use(
