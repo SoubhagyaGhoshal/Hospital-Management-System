@@ -14,12 +14,13 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "process.env.DB_USER",
-    "password": "process.env.DB_PASSWORD",
-    "database": "process.env.DB_NAME",
-    "host": "process.env.DB_HOST",
-    "port": "process.env.DB_PORT",
+    "username": "hospital_user",
+    "password": "Soubhagyag73@",
+    "database": "hospital",
+    "host": "dpg-cp8qj8i1hbls73f8qj8g-a.oregon-postgres.render.com",
+    "port": 5432,
     "dialect": "postgres",
+    "ssl": true,
     "dialectOptions": {
       "ssl": {
         "require": true,

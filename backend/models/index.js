@@ -56,6 +56,8 @@ db.Appointment = require("./appointment")(sequelize, Sequelize.DataTypes);
 
 db.Pharmacy = require("./pharmacy")(sequelize, Sequelize.DataTypes);
 
+db.User = require("./user")(sequelize, Sequelize.DataTypes);
+
 // One-to-One Association For Department Start
 
 db.Doctor.hasOne(db.Department, {

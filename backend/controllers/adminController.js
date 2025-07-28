@@ -2,11 +2,21 @@ const adminService = require("../services/adminServices");
 
 const adminController = {
   findAdmin: async (req, res) => {
+    console.log('Admin login request received:', { 
+      method: req.method, 
+      body: req.body, 
+      headers: req.headers 
+    });
+    
     const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: "username and password are required!" });
+    }
 
     try {
       const response = await adminService.findAdminService(username, password);
-
+      console.log('Admin login successful for user:', username);
       res.status(201).json(response);
     } catch (error) {
       console.error("Error in get admin:", error.message);
@@ -22,6 +32,9 @@ const adminController = {
       if (error.message === "password is does not match!") {
         return res.status(402).json({ error: error.message });
       }
+      
+      // Generic error response
+      return res.status(500).json({ error: "Internal server error", details: error.message });
     }
   },
 
