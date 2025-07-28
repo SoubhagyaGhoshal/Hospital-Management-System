@@ -1,4 +1,5 @@
 const adminService = require("../services/adminServices");
+const db = require("../models/index");
 
 const adminController = {
   findAdmin: async (req, res) => {
