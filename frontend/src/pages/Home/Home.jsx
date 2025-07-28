@@ -91,14 +91,16 @@ function Home() {
       console.error("❌ Error logging in:", error.message);
       
       // Provide helpful error messages based on the error
-      if (error.message.includes("Network error")) {
-        setError("Network connection failed. Please check your internet connection and ensure the backend is running on localhost:4000.");
+      if (error.message.includes("Both production and local backends are unavailable")) {
+        setError("Backend servers are unavailable. Please ensure the local backend is running on port 4000 for testing.");
+      } else if (error.message.includes("Network error")) {
+        setError("Network connection failed. Please check your internet connection.");
       } else if (error.message.includes("Server error")) {
-        setError("Server error. Please ensure the backend is running locally on port 4000.");
+        setError("Server error. Please try again or ensure the local backend is running on port 4000.");
       } else if (error.message.includes("timeout")) {
         setError("Request timed out. Please try again.");
       } else if (error.message.includes("Internal server error")) {
-        setError("Server error. Please ensure the backend is running locally on port 4000.");
+        setError("Server error. Please try again or ensure the local backend is running on port 4000.");
       } else {
         setError(error.message || "Login failed. Please try again.");
       }
