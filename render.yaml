@@ -3,7 +3,7 @@ services:
   - type: web
     name: hospital-backend
     env: node
-    plan: free
+    plan: starter
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
     envVars:
@@ -35,10 +35,8 @@ services:
           property: port
 
   # Frontend
-  - type: web
+  - type: static
     name: hospital-frontend
-    env: static
-    plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/dist
     envVars:
@@ -49,4 +47,4 @@ databases:
   - name: hospital-db
     databaseName: hospital
     user: hospital_user
-    plan: free 
+    plan: starter 
