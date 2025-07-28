@@ -26,7 +26,7 @@ function App() {
         element={<SignUp />}
       />
       <Route
-        path="/dashbord"
+        path="/dashboard"
         element={<Dashboard pages={pages} />}
       />
       <Route

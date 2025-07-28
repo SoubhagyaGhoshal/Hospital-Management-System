@@ -60,9 +60,10 @@ function Home() {
           // Handle demo mode
           if (response.demo) {
             localStorage.setItem("demoMode", "true");
+            console.log('🎭 Demo mode enabled');
           }
           console.log('🚀 Navigating to dashboard...');
-          navigate("/dashbord");
+          navigate("/dashboard");
         } else {
           setError("Login failed.");
         }
