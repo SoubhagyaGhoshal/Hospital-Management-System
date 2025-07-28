@@ -156,6 +156,17 @@ const createDemoRoutes = () => {
     }
   });
 
+  // Admin GET endpoint for authentication verification
+  app.get("/api/admin", (req, res) => {
+    res.json({
+      error: "Demo mode - Database not available",
+      message: "This is a demo version. Please use admin/admin123 to login.",
+      demo: true,
+      timestamp: new Date().toISOString(),
+      note: "Full functionality requires database connection"
+    });
+  });
+
   // Demo data endpoints
   app.get("/api/doctors", (req, res) => {
     res.json({
