@@ -68,30 +68,30 @@ function Home() {
           setError("Login failed.");
         }
       } else if (selectedRole === "Patient") {
-        const response = await loginPatient({ email: username, password });
+        const response = await loginPatient({ username, password });
 
         if (response && response.token) {
           setSuccess(`Login successful as ${selectedRole}`);
           localStorage.setItem("token", response.token);
           localStorage.setItem("userRole", "patient");
-          localStorage.setItem("patientData", JSON.stringify(response.patient));
+          localStorage.setItem("patientData", JSON.stringify(response.user));
           navigate("/patient-dashboard");
         } else {
-          setError("Invalid email or password.");
+          setError("Invalid username or password.");
         }
-              } else if (selectedRole === "Doctor") {
-          const response = await doctorLogin({ email: username, password });
+      } else if (selectedRole === "Doctor") {
+        const response = await doctorLogin({ username, password });
 
-          if (response && response.token) {
-            setSuccess(`Login successful as ${selectedRole}`);
-            localStorage.setItem("token", response.token);
-            localStorage.setItem("userRole", "doctor");
-            localStorage.setItem("doctorData", JSON.stringify(response.doctor));
-            navigate("/doctor-dashboard");
-          } else {
-            setError("Invalid email or password.");
-          }
+        if (response && response.token) {
+          setSuccess(`Login successful as ${selectedRole}`);
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("userRole", "doctor");
+          localStorage.setItem("doctorData", JSON.stringify(response.user));
+          navigate("/doctor-dashboard");
+        } else {
+          setError("Invalid username or password.");
         }
+      }
     } catch (error) {
       console.error("❌ Error logging in:", error.message);
       
