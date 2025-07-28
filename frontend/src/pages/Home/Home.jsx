@@ -92,28 +92,28 @@ function Home() {
       
       // Provide helpful error messages based on the error
       if (error.message.includes("Server temporarily unavailable")) {
-        setError("Demo server is temporarily unavailable. Please try again in a few moments or use the demo login (admin/admin123).");
+        setError("Server is temporarily unavailable. Please try again in a few moments or use admin/admin123 to login.");
       } else if (error.message.includes("Network error")) {
         if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Demo is experiencing connectivity issues. Please try again or use the demo login (admin/admin123).");
+          setError("Server is experiencing connectivity issues. Please try again or use admin/admin123 to login.");
         } else {
           setError("Network connection failed. Please check your internet connection.");
         }
       } else if (error.message.includes("Server error")) {
         if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Demo server is experiencing issues. Please try again or use the demo login (admin/admin123).");
+          setError("Server is experiencing database connection issues. Please try again or use admin/admin123 to login.");
         } else {
           setError("Server error. Please try again or ensure the local backend is running on port 4000.");
         }
       } else if (error.message.includes("timeout")) {
         if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Demo server is experiencing timeout issues. Please try again or use the demo login (admin/admin123).");
+          setError("Server is experiencing timeout issues. Please try again or use admin/admin123 to login.");
         } else {
           setError("Request timed out. Please try again.");
         }
       } else if (error.message.includes("Internal server error")) {
         if (window.location.hostname === 'cliniva.netlify.app') {
-          setError("Demo server is experiencing issues. Please try again or use the demo login (admin/admin123).");
+          setError("Server is experiencing database connection issues. Please try again or use admin/admin123 to login.");
         } else {
           setError("Server error. Please try again or ensure the local backend is running on port 4000.");
         }
