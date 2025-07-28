@@ -29,6 +29,11 @@ function Home() {
   };
 
   const handleSubmit = async () => {
+    console.log('🔐 Login attempt started');
+    console.log('👤 Username:', username);
+    console.log('🔑 Password:', password);
+    console.log('🎭 Selected role:', selectedRole);
+    
     if (!selectedRole) {
       setError("Please select a role: Admin, Doctor, or Patient.");
       return;
@@ -40,7 +45,9 @@ function Home() {
 
     try {
       if (selectedRole === "Admin") {
+        console.log('🔄 Calling loginAdmin API...');
         const response = await loginAdmin({ username, password });
+        console.log('✅ Login response:', response);
 
         if (response) {
           setSuccess(`Login successful as ${selectedRole}`);
@@ -50,6 +57,7 @@ function Home() {
           if (response.demo) {
             localStorage.setItem("demoMode", "true");
           }
+          console.log('🚀 Navigating to dashboard...');
           navigate("/dashbord");
         } else {
           setError("Login failed.");
@@ -80,7 +88,7 @@ function Home() {
           }
         }
     } catch (error) {
-      console.error("Error logging in:", error.message);
+      console.error("❌ Error logging in:", error.message);
       
       // Provide helpful error messages based on the error
       if (error.message.includes("Network error")) {
