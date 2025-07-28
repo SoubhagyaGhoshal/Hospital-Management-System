@@ -2,7 +2,9 @@ import axios from "axios";
 
 // Create Axios instance
 const api = axios.create({
-  baseURL: "http://localhost:4000/api", // Replace with your actual API base URL
+  baseURL: process.env.NODE_ENV === 'production' 
+    ? "https://your-backend-url.vercel.app/api"  // Replace with your actual deployed backend URL
+    : "http://localhost:4000/api",
 });
 
 // Function to get auth headers
