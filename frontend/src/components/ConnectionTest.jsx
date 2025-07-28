@@ -1,5 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { testConnection } from '../utils/ApiUtils/ApiUtils.jsx';
+
+// Inline testConnection function to avoid import/export issues
+const testConnection = async () => {
+  const isProduction = process.env.NODE_ENV === 'production';
+  const baseURL = isProduction 
+    ? import.meta.env.VITE_API_URL || "https://hospital-backend.onrender.com/api"
+    : "http://localhost:4000/api";
+  try {
+    const response = await fetch(baseURL + '/');
+    if (response.ok) {
+      const data = await response.json();
+      console.log('Backend connection successful:', data);
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error('Backend connection failed:', error);
+    return false;
+  }
+};
 
 function ConnectionTest() {
   const [connectionStatus, setConnectionStatus] = useState('Testing...');
@@ -11,7 +31,6 @@ function ConnectionTest() {
     const url = isProduction 
       ? import.meta.env.VITE_API_URL || "https://hospital-backend.onrender.com/api"
       : "http://localhost:4000/api";
-    
     setBackendUrl(url);
 
     // Test the connection
