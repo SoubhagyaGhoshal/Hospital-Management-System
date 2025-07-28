@@ -20,19 +20,13 @@
     "host": "dpg-cp8qj8i1hbls73f8qj8g-a.oregon-postgres.render.com",
     "port": 5432,
     "dialect": "postgres",
-    "ssl": true,
     "dialectOptions": {
       "ssl": {
         "require": true,
         "rejectUnauthorized": false
       }
     },
-    "pool": {
-      "max": 5,
-      "min": 0,
-      "acquire": 30000,
-      "idle": 10000
-    }
+    "logging": false
   }
 }
 
