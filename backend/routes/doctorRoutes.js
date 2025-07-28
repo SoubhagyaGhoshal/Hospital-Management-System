@@ -24,6 +24,42 @@ doctorRouter.delete(
   doctorController.dltDoctorById
 );
 
+// Emergency endpoint to add basic doctors to production
+doctorRouter.post("/doctors/emergency-add", async (req, res) => {
+  try {
+    const bcrypt = require('bcryptjs');
+    const { Doctor } = require('../models');
+    
+    const hashedPassword = await bcrypt.hash('doctor123', 10);
+    
+    const basicDoctor = {
+      firstName: 'Dr. John',
+      lastName: 'Smith',
+      gender: 'Male',
+      mobile: '5551234567',
+      password: hashedPassword,
+      designation: 'Neurologist',
+      department: 'Neurology',
+      address: '123 Medical Center Dr',
+      email: 'john.smith@hospital.com',
+      birth: new Date('1980-01-01'),
+      education: 'MD, Neurology',
+      doctorimg: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
+    };
+
+    // Add basic doctor
+    await Doctor.create(basicDoctor);
+    
+    res.json({ 
+      message: 'Emergency doctor added successfully',
+      doctor: basicDoctor
+    });
+  } catch (error) {
+    console.error('Error adding emergency doctor:', error);
+    res.status(500).json({ error: 'Failed to add emergency doctor', details: error.message });
+  }
+});
+
 // Clear and re-populate doctor table with 7 doctors
 doctorRouter.post("/doctors/clear-and-populate", async (req, res) => {
   try {
