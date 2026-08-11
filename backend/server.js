@@ -40,36 +40,22 @@ const initializeDatabase = async () => {
   }, 15000); // 15 second timeout for production
 
   try {
-    console.log('🔗 Attempting to connect to database...');
-    console.log('📊 Database config:', {
-      host: db.sequelize.config.host,
-      port: db.sequelize.config.port,
-      database: db.sequelize.config.database,
-      dialect: db.sequelize.config.dialect
-    });
-    
-    await db.sequelize.authenticate();
-    console.log('✅ Database connection has been established successfully.');
-    
-    // Sync database (create tables if they don't exist) - use force: false to avoid data loss
-    await db.sequelize.sync({ force: false, alter: false });
-    console.log('🔄 Database synchronized successfully.');
-    
-    // Check if admin user exists, if not create one
-    if (db.User) {
-      const User = db.User;
-      const existingAdmin = await User.findOne({ where: { username: 'admin' } });
-      
-      if (!existingAdmin) {
-        await User.create({
-          username: 'admin',
-          password: 'admin123'
-        });
-        console.log('👤 Admin user created successfully');
-      } else {
-        console.log('👤 Admin user already exists');
-      }
+    const isConnected = await db.checkConnection();
+    if (!isConnected) {
+      throw new Error('Failed to connect to CognoDB');
     }
+    console.log('✅ Database module loaded successfully');
+    
+    // In a graph database, we don't need to 'sync' schemas.
+    // If you need to ensure an admin user exists, you can do a Cypher query here:
+    /*
+    const session = db.getSession();
+    await session.run(`
+      MERGE (a:Admin {username: 'admin'})
+      ON CREATE SET a.password = 'admin123', a.role = 'admin'
+    `);
+    session.close();
+    */
     
     // Set global flag to indicate database is available
     global.dbConnected = true;

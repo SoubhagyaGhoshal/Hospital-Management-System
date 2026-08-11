@@ -1,11 +1,7 @@
 const db = require("../models/index");
-const { updateDepartmentService } = require("./departmentServices");
-const Doctor = db.Doctor;
-const Shiftmanagement = db.Shiftmanagement;
+const { v4: uuidv4 } = require('uuid');
 
 const shiftService = {
-  // for add shift Service start
-
   addShiftService: async (
     doctor_id,
     department,
@@ -19,111 +15,127 @@ const shiftService = {
     totalhoursweeks,
     shiftnotes
   ) => {
-    const existingId = await Shiftmanagement.findOne({
-      where: { doctor_id: doctor_id },
-    });
+    const session = db.getSession();
+    try {
+      // Check if doctor exists
+      const docResult = await session.run('MATCH (d:Doctor {id: $id}) RETURN d', { id: doctor_id });
+      if (docResult.records.length === 0) {
+        throw new Error("Doctor Not Exit!");
+      }
+      const existingDoctor = docResult.records[0].get('d').properties;
 
-    if (existingId) {
-      throw new Error("Shift already assigned to this doctor!");
+      // Check if already assigned
+      const shiftResult = await session.run(
+        'MATCH (s:Shiftmanagement {doctor_id: $doctor_id}) RETURN s',
+        { doctor_id }
+      );
+      if (shiftResult.records.length > 0) {
+        throw new Error("Shift already assigned to this doctor!");
+      }
+
+      const id = uuidv4();
+      const shiftData = {
+        id,
+        doctor_id,
+        name: existingDoctor.firstName + " " + existingDoctor.lastName,
+        department,
+        specialty,
+        shiftstart,
+        shiftend,
+        workday,
+        shifthours,
+        shifttype,
+        status,
+        totalhoursweeks,
+        shiftnotes,
+      };
+
+      const result = await session.run(
+        `
+        MATCH (doc:Doctor {id: $doctor_id})
+        CREATE (s:Shiftmanagement $props)
+        CREATE (doc)-[:HAS_SHIFT]->(s)
+        RETURN s
+        `,
+        { doctor_id, props: shiftData }
+      );
+
+      return result.records[0].get('s').properties;
+    } finally {
+      await session.close();
     }
-
-    const existingDoctor = await Doctor.findOne({
-      where: { id: doctor_id },
-    });
-
-    if (!existingDoctor) {
-      throw new Error("Doctor Not Exit!");
-    }
-
-    const response = await Shiftmanagement.create({
-      doctor_id,
-      name: existingDoctor.firstName + " " + existingDoctor.lastName,
-      department,
-      specialty,
-      shiftstart,
-      shiftend,
-      workday,
-      shifthours,
-      shifttype,
-      status,
-      totalhoursweeks,
-      shiftnotes,
-    });
-
-    return response;
   },
-
-  // for add shift Service end
-
-  // for get shift Service by id start
 
   getShiftService: async (id) => {
-    const response = await Shiftmanagement.findOne({
-      where: { id: id },
-    });
-
-    return response;
+    const session = db.getSession();
+    try {
+      const result = await session.run('MATCH (s:Shiftmanagement {id: $id}) RETURN s', { id });
+      if (result.records.length === 0) return null;
+      return result.records[0].get('s').properties;
+    } finally {
+      await session.close();
+    }
   },
-
-  // for get shift Service by id end
-
-  // for get shift Service all start
 
   getAllShiftService: async () => {
-    const response = await Doctor.findAll({
-      attributes: ["id", "doctorimg", "firstName", "lastName", "department"],
-      include: [
-        {
-          model: Shiftmanagement,
-          attributes: [
-            "id",
-            "name",
-            "department",
-            "specialty",
-            "shiftstart",
-            "workday",
-            "shifthours",
-            "shiftend",
-            "shifttype",
-            "status",
-          ],
-          foreignKey: "doctor_id",
-        },
-      ],
-    });
-
-    return response;
+    const session = db.getSession();
+    try {
+      const result = await session.run(`
+        MATCH (d:Doctor)
+        OPTIONAL MATCH (d)-[:HAS_SHIFT]->(s:Shiftmanagement)
+        RETURN d, collect(s) as Shiftmanagements
+      `);
+      
+      return result.records.map(record => {
+        const doc = record.get('d').properties;
+        const shifts = record.get('Shiftmanagements')
+          .filter(s => s !== null)
+          .map(s => s.properties);
+        
+        return {
+          id: doc.id,
+          doctorimg: doc.doctorimg,
+          firstName: doc.firstName,
+          lastName: doc.lastName,
+          department: doc.department,
+          Shiftmanagements: shifts
+        };
+      });
+    } finally {
+      await session.close();
+    }
   },
 
-  // for get shift Service all end
-
   updateShiftService: async (id, shiftData) => {
-    const existingShift = await Shiftmanagement.findOne({
-      where: { id: id },
-    });
-
-    if (!existingShift) {
-      throw new Error("Shift Not Exists!");
+    const session = db.getSession();
+    try {
+      const result = await session.run(
+        'MATCH (s:Shiftmanagement {id: $id}) SET s += $props RETURN s',
+        { id, props: shiftData }
+      );
+      if (result.records.length === 0) {
+        throw new Error("Shift Not Exists!");
+      }
+      return result.records[0].get('s').properties;
+    } finally {
+      await session.close();
     }
-
-    // ✅ Await the update operation
-    const updatedShift = await existingShift.update(shiftData);
-
-    console.log(updatedShift);
-
-    return updatedShift;
   },
 
   deleteShiftService: async (id) => {
-    const existingShift = await Shiftmanagement.findOne({ where: { id: id } });
-
-    if (!existingShift) {
-      return { success: false, message: "Shift not found!" };
+    const session = db.getSession();
+    try {
+      const result = await session.run(
+        'MATCH (s:Shiftmanagement {id: $id}) DETACH DELETE s RETURN s',
+        { id }
+      );
+      if (result.records.length === 0) {
+        return { success: false, message: "Shift not found!" };
+      }
+      return { success: true, message: "Shift deleted successfully!" };
+    } finally {
+      await session.close();
     }
-
-    await Shiftmanagement.destroy({ where: { id: id } });
-
-    return { success: true, message: "Shift deleted successfully!" };
   },
 };
 

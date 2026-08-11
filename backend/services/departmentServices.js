@@ -1,10 +1,9 @@
 const db = require("../models/index");
-const Department = db.Department;
-const Doctor = db.Doctor;
+const { v4: uuidv4 } = require('uuid');
 
 const departmentService = {
   postDepartmentService: async (
-    doctorid, // Passed as camelCase
+    doctorid,
     department,
     specialty,
     assignedDate,
@@ -12,26 +11,28 @@ const departmentService = {
     experience,
     status
   ) => {
+    const session = db.getSession();
     try {
-      const existingId = await Department.findOne({
-        where: { doctor_id: doctorid },
-      });
+      // Check if doctor exists
+      const docResult = await session.run('MATCH (d:Doctor {id: $id}) RETURN d', { id: doctorid });
+      if (docResult.records.length === 0) {
+        throw new Error("Doctor Not Exit!");
+      }
+      const existingDoctor = docResult.records[0].get('d').properties;
 
-      if (existingId) {
+      // Check if already assigned
+      const deptResult = await session.run(
+        'MATCH (dept:Department {doctor_id: $doctorid}) RETURN dept',
+        { doctorid }
+      );
+      if (deptResult.records.length > 0) {
         throw new Error("Department already assigned to this doctor!");
       }
 
-      const existingDoctor = await Doctor.findOne({
-        where: { id: doctorid },
-      });
-
-      if (!existingDoctor) {
-        throw new Error("Doctor Not Exit!");
-      }
-
-      // Create a new department assignment
-      const departmentData = await Department.create({
-        doctor_id: doctorid, 
+      const id = uuidv4();
+      const departmentData = {
+        id,
+        doctor_id: doctorid,
         doctorName: existingDoctor.firstName + " " + existingDoctor.lastName,
         department,
         specialty,
@@ -39,73 +40,96 @@ const departmentService = {
         schedule,
         experience,
         status,
-      });
+      };
 
-      return departmentData; // Returning the created department
-    } catch (error) {
-      console.error("Error in postDepartmentService:", error.message);
-      throw error; // Ensure error is properly handled in the calling function
+      const result = await session.run(
+        `
+        MATCH (doc:Doctor {id: $doctorid})
+        CREATE (dept:Department $props)
+        CREATE (doc)-[:WORKS_IN]->(dept)
+        RETURN dept
+        `,
+        { doctorid, props: departmentData }
+      );
+
+      return result.records[0].get('dept').properties;
+    } finally {
+      await session.close();
     }
   },
 
   dltDepartmentByIdService: async (id) => {
-    const departmentData = await Department.findOne({ where: { id } });
-
-    if (!departmentData) {
-      return { success: false, message: "Department not found" };
+    const session = db.getSession();
+    try {
+      const result = await session.run(
+        'MATCH (dept:Department {id: $id}) DETACH DELETE dept RETURN dept',
+        { id }
+      );
+      if (result.records.length === 0) {
+        return { success: false, message: "Department not found" };
+      }
+      return { success: true, message: "Department deleted successfully" };
+    } finally {
+      await session.close();
     }
-
-    await Department.destroy({ where: { id } });
-
-    return { success: true, message: "Department deleted successfully" };
   },
 
   getDepartmentService: async (id) => {
-    const data = await Department.findAll({
-      where: { id: id },
-    });
-
-    if (!data) {
-      throw new Error("Department Not Exits!");
+    const session = db.getSession();
+    try {
+      const result = await session.run('MATCH (dept:Department {id: $id}) RETURN dept', { id });
+      if (result.records.length === 0) {
+        throw new Error("Department Not Exits!");
+      }
+      return result.records.map(record => record.get('dept').properties);
+    } finally {
+      await session.close();
     }
-
-    return data;
   },
 
   getAllDepartmentService: async () => {
-    const data = await Doctor.findAll({
-      attributes: ["firstName", "mobile", "email", "education", "doctorimg"],
-      include: [
-        {
-          model: Department,
-          attributes: [
-            "id",
-            "doctor_id",
-            "doctorName",
-            "department",
-            "specialty",
-            "assignedDate",
-            "schedule",
-            "experience",
-            "status",
-          ],
-          foreignKey: "doctor_id", 
-        },
-      ],
-    });
-
-    return data;
-  },
-  updateDepartmentService: async (id, departmentData) => {
-    const existingDepartment = await Department.findOne({ where: { id } });
-
-    if (!existingDepartment) {
-      throw new Error("Department Not Exits!");
+    const session = db.getSession();
+    try {
+      const result = await session.run(`
+        MATCH (d:Doctor)
+        OPTIONAL MATCH (d)-[:WORKS_IN]->(dept:Department)
+        RETURN d, collect(dept) as Departments
+      `);
+      
+      return result.records.map(record => {
+        const doc = record.get('d').properties;
+        const depts = record.get('Departments')
+          .filter(dept => dept !== null)
+          .map(dept => dept.properties);
+        
+        return {
+          firstName: doc.firstName,
+          mobile: doc.mobile,
+          email: doc.email,
+          education: doc.education,
+          doctorimg: doc.doctorimg,
+          Departments: depts
+        };
+      });
+    } finally {
+      await session.close();
     }
+  },
 
-    await existingDepartment.update(departmentData);
-
-    return existingDepartment;
+  updateDepartmentService: async (id, departmentData) => {
+    const session = db.getSession();
+    try {
+      const result = await session.run(
+        'MATCH (dept:Department {id: $id}) SET dept += $props RETURN dept',
+        { id, props: departmentData }
+      );
+      if (result.records.length === 0) {
+        throw new Error("Department Not Exits!");
+      }
+      return result.records[0].get('dept').properties;
+    } finally {
+      await session.close();
+    }
   },
 };
 
