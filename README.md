@@ -149,13 +149,7 @@ CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ### Patients
 - **Mary Johnson**: `mary@example.com` / `mary123`
 - **Tom Williams**: `tom@example.com` / `tom123`
-
-## 📱 Application URLs
-
-- **Frontend**: http://localhost:5173
-- **Backend API**: http://localhost:4000
-- **API Documentation**: http://localhost:4000/api
-
+ 
 ## 🏗️ Project Structure
 
 ```
