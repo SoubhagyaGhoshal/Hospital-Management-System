@@ -31,7 +31,7 @@
   "license": "ISC",
   "description": "Hospital Management System Backend",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "20.x"
   },
   "devDependencies": {
     "sequelize-cli": "^6.6.2"
