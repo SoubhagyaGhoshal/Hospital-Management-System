@@ -26,13 +26,7 @@ try {
         username: process.env.DB_USER || config.username || 'root',
         password: process.env.DB_PASSWORD || config.password || '',
         database: process.env.DB_NAME || config.database || 'hospital',
-        logging: false,
-        dialectOptions: {
-          ssl: {
-            require: true,
-            rejectUnauthorized: false
-          }
-        }
+        logging: false
       };
       
       sequelize = new Sequelize(dbConfig);
