@@ -186,14 +186,14 @@ function Home() {
           {/* Username Input */}
           <div className="mt-5 relative">
             <label className="absolute top-[-2px] left-2 bg-[#11141b] text-[#96a2b4] text-[14px] px-2 h-[12px]">
-              Username*
+              Email*
             </label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="w-full border-[0.5px] border-[#96a2b4]/50 rounded px-4 py-4 bg-transparent text-white placeholder-gray-400 mt-2"
-              placeholder="Enter your username"
+              placeholder="Enter your email"
             />
             <span className="absolute right-4 top-[24px] text-white cursor-pointer">
               <CgGirl className="text-[25px] text-[#96a2b4]" />
