@@ -20,7 +20,7 @@ try {
       
       // Use environment variables for database configuration
       const dbConfig = {
-        dialect: 'mysql',
+        dialect: process.env.DB_PORT == '5432' ? 'postgres' : 'mysql',
         host: process.env.DB_HOST || config.host || 'localhost',
         port: process.env.DB_PORT || config.port || 3306,
         username: process.env.DB_USER || config.username || 'root',
