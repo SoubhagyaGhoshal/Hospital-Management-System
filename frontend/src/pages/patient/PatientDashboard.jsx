@@ -15,8 +15,21 @@ function PatientDashboard() {
       return;
     }
 
-    if (patientDataStr) {
-      setPatientData(JSON.parse(patientDataStr));
+    if (patientDataStr && patientDataStr !== "undefined") {
+      try {
+        setPatientData(JSON.parse(patientDataStr));
+      } catch (e) {
+        console.error("Error parsing patientData", e);
+        localStorage.removeItem("token");
+        localStorage.removeItem("userRole");
+        localStorage.removeItem("patientData");
+        navigate("/");
+      }
+    } else if (patientDataStr === "undefined") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userRole");
+        localStorage.removeItem("patientData");
+        navigate("/");
     }
   }, [navigate]);
 

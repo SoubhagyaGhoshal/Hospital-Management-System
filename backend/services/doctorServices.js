@@ -161,7 +161,7 @@ const doctorServices = {
       const token = generateToken(payload);
 
       return {
-        doctor: existingDoctor,
+        user: existingDoctor,
         token
       };
     } finally {

@@ -116,7 +116,7 @@ const patientServices = {
       };
       
       const token = generateToken(payload);
-      return { patient, token };
+      return { user: patient, token };
     } finally {
       await session.close();
     }

@@ -14,11 +14,21 @@ const DoctorDashboard = () => {
       return;
     }
 
-    try {
-      setDoctorData(JSON.parse(storedDoctorData));
-    } catch (error) {
-      console.error('Error parsing doctor data:', error);
-      navigate('/');
+    if (storedDoctorData && storedDoctorData !== "undefined") {
+      try {
+        setDoctorData(JSON.parse(storedDoctorData));
+      } catch (e) {
+        console.error("Error parsing doctorData", e);
+        localStorage.removeItem("token");
+        localStorage.removeItem("userRole");
+        localStorage.removeItem("doctorData");
+        navigate("/");
+      }
+    } else if (storedDoctorData === "undefined") {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userRole");
+        localStorage.removeItem("doctorData");
+        navigate("/");
     }
   }, [navigate]);
 
