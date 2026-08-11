@@ -18,37 +18,11 @@ const adminController = {
     }
 
     try {
-      // Check if database is connected
-      if (!db.sequelize.authenticate) {
-        return res.status(503).json({ error: "Database connection not available" });
-      }
-
       const response = await adminService.findAdminService(username, password);
       console.log('Admin login successful for user:', username);
-      res.status(201).json(response);
+      res.status(200).json(response);
     } catch (error) {
       console.error("Error in get admin:", error.message);
-
-      // If database connection fails, use fallback authentication
-      if (error.message.includes('Connection terminated') || error.message.includes('ECONNREFUSED')) {
-        console.log('Database connection failed, using fallback authentication');
-        
-        // Simple fallback authentication
-        if (username === 'admin' && password === 'admin123') {
-          const payload = {
-            username: 'admin',
-            id: 1,
-          };
-          const token = generateToken(payload);
-          
-          return res.status(201).json({
-            user: { username: 'admin', id: 1 },
-            token: token
-          });
-        } else {
-          return res.status(401).json({ error: "Invalid credentials" });
-        }
-      }
 
       if (error.message === "username and password are required!") {
         return res.status(400).json({ error: error.message });
