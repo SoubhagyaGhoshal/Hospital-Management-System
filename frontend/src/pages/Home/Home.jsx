@@ -68,7 +68,7 @@ function Home() {
           setError("Login failed.");
         }
       } else if (selectedRole === "Patient") {
-        const response = await loginPatient({ username, password });
+        const response = await loginPatient({ email: username, password });
 
         if (response && response.token) {
           setSuccess(`Login successful as ${selectedRole}`);
@@ -80,7 +80,7 @@ function Home() {
           setError("Invalid username or password.");
         }
       } else if (selectedRole === "Doctor") {
-        const response = await doctorLogin({ username, password });
+        const response = await doctorLogin({ email: username, password });
 
         if (response && response.token) {
           setSuccess(`Login successful as ${selectedRole}`);
