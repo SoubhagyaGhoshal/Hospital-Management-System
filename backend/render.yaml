@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: hospital-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: SECRET_KEY
+        value: hospital_management_secret_key_2024_secure_and_unique
+      - key: COGNODB_URI
+        value: bolt+s://db-6bfad97a.databases.cognodb.com
+      - key: COGNODB_USER
+        value: hospitalbackend
+      - key: COGNODB_PASSWORD
+        value: 8295a3966ef97c131e43138109687f29
+    healthCheckPath: /
+    autoDeploy: true 

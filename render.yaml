@@ -1,0 +1,29 @@
+services:
+  # Backend API
+  - type: web
+    name: hospital-backend
+    env: node
+    plan: starter
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: NODE_VERSION
+        value: "20"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: hospital-db
+          property: connectionString
+
+
+
+databases:
+  - name: hospital-db
+    databaseName: hospital
+    user: hospital_user
+    plan: starter 
