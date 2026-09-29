@@ -19,6 +19,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Import database connection
 const db = require('./models/index');
+const { requireDatabase } = require('./middleware/dbCheck');
 
 // Import Routers
 const adminRouter = require("./routes/adminRoutes");
@@ -29,7 +30,8 @@ const patientRouter = require("./routes/patientRoutes");
 const appointmentRouter = require("./routes/appointmentRouter");
 const pharmacyRouter = require("./routes/pharmacyRoutes");
 
-// Mount Routers
+// Mount Routers — requireDatabase returns 503 when CognoDB is unreachable
+app.use("/api", requireDatabase);
 app.use("/api", doctorRouter);
 app.use("/api", adminRouter);
 app.use("/api", departmentRouter);
@@ -37,6 +39,7 @@ app.use("/api", shiftRouter);
 app.use("/api", patientRouter);
 app.use("/api", appointmentRouter);
 app.use("/api", pharmacyRouter);
+
 
 // Health check endpoint
 app.get("/test", (req, res) => {
